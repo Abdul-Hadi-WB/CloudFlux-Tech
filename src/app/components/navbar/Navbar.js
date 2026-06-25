@@ -1,12 +1,13 @@
-// src/components/Navbar.js
 'use client'
-import React, { useState }  from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react' // Mobile icons add kar diye hain
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false) // Desktop dropdown state
+  const [isMobileOpen, setIsMobileOpen] = useState(false) // Mobile drawer state
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false) // Mobile services submenu state
 
   return (
     <nav className="w-full fixed top-0 left-0 z-50 bg-white shadow-sm">
@@ -39,11 +40,11 @@ const Navbar = () => {
                 width={250}
                 height={110}
                 priority
-                className="object-contain transition duration-500 group-hover:scale-105"
+                className="w-[180px] sm:w-[220px] md:w-[250px] h-auto object-contain transition duration-500 group-hover:scale-105"
               />
             </Link>
 
-            {/* Menu */}
+            {/* Desktop Menu - Hidden on mobile, visible on desktop */}
             <div className="hidden md:flex items-center gap-10 font-semibold text-black">
               <Link 
                 href="/home" 
@@ -135,7 +136,7 @@ const Navbar = () => {
               </Link>
             </div>
 
-            {/* Right Side - Book a Consultation Button */}
+            {/* Desktop Right Side Button */}
             <div className="hidden md:flex items-center gap-4">
               <Link href="/consultation">
                 <button className="px-6 py-2 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300">
@@ -143,6 +144,111 @@ const Navbar = () => {
                 </button>
               </Link>
             </div>
+
+            {/* Mobile Hamburger Menu Button - Visible only on mobile */}
+            <div className="flex md:hidden items-center">
+              <button
+                onClick={() => setIsMobileOpen(!isMobileOpen)}
+                className="text-black hover:text-[#C9A227] transition duration-300 focus:outline-none"
+              >
+                {isMobileOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Slide-down Panel */}
+      <div
+        className={`md:hidden bg-white border-b border-[#C9A227]/40 transition-all duration-300 ease-in-out overflow-hidden ${
+          isMobileOpen ? 'max-h-[80vh] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+        }`}
+      >
+        <div className="px-6 py-5 space-y-4 font-semibold text-black overflow-y-auto max-h-[calc(80vh-2rem)]">
+          <Link
+            href="/home"
+            onClick={() => setIsMobileOpen(false)}
+            className="block hover:text-[#C9A227] transition duration-300 py-1"
+          >
+            Home
+          </Link>
+          
+          <Link
+            href="/about"
+            onClick={() => setIsMobileOpen(false)}
+            className="block hover:text-[#C9A227] transition duration-300 py-1"
+          >
+            About
+          </Link>
+
+          {/* Mobile Accordion Dropdown for Services */}
+          <div className="py-1">
+            <button
+              onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+              className="w-full flex items-center justify-between hover:text-[#C9A227] transition duration-300 text-left font-semibold"
+            >
+              <span>Services</span>
+              <ChevronDown
+                size={18}
+                className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180 text-[#C9A227]' : ''}`}
+              />
+            </button>
+            
+            <div
+              className={`pl-4 border-l-2 border-[#C9A227]/30 transition-all duration-300 ease-in-out overflow-hidden ${
+                isMobileServicesOpen ? 'max-h-80 opacity-100 mt-3 space-y-3' : 'max-h-0 opacity-0'
+              }`}
+            >
+              <Link
+                href="/web-development"
+                onClick={() => setIsMobileOpen(false)}
+                className="block font-medium text-sm text-gray-700 hover:text-[#C9A227]"
+              >
+                Web Development
+              </Link>
+              <Link
+                href="/digital-marketing"
+                onClick={() => setIsMobileOpen(false)}
+                className="block font-medium text-sm text-gray-700 hover:text-[#C9A227]"
+              >
+                Social Media Marketing
+              </Link>
+              <Link
+                href="/video-editing"
+                onClick={() => setIsMobileOpen(false)}
+                className="block font-medium text-sm text-gray-700 hover:text-[#C9A227]"
+              >
+                Video Editing
+              </Link>
+              <Link
+                href="/graphic-designing"
+                onClick={() => setIsMobileOpen(false)}
+                className="block font-medium text-sm text-gray-700 hover:text-[#C9A227]"
+              >
+                Graphic Designing
+              </Link>
+            </div>
+          </div>
+
+          <Link
+            href="/contact"
+            onClick={() => setIsMobileOpen(false)}
+            className="block hover:text-[#C9A227] transition duration-300 py-1"
+          >
+            Contact
+          </Link>
+
+          {/* Divider line before CTA */}
+          <div className="border-t border-gray-100 my-2"></div>
+
+          {/* Consultation Button for Mobile */}
+          <div className="pt-2">
+            <Link href="/consultation" onClick={() => setIsMobileOpen(false)}>
+              <button className="w-full px-6 py-2.5 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300 text-center text-sm">
+                BOOK A CONSULTATION
+              </button>
+            </Link>
           </div>
         </div>
       </div>
