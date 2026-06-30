@@ -5,6 +5,30 @@ import Link from 'next/link'
 import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
 
 const Footer = () => {
+  // Social media configuration with original brand colors
+  const socialLinks = [
+    {
+      Icon: Facebook,
+      href: "https://www.facebook.com/CloudFluxTech/",
+      hoverClass: "hover:bg-[#1877F2] hover:text-white"
+    },
+    {
+      Icon: Twitter,
+      href: "#", // Add Twitter link here if needed
+      hoverClass: "hover:bg-[#1DA1F2] hover:text-white"
+    },
+    {
+      Icon: Instagram,
+      href: "https://www.instagram.com/cloudflux_tech/",
+      hoverClass: "hover:bg-[#E1306C] hover:text-white"
+    },
+    {
+      Icon: Linkedin,
+      href: "#", // Add Linkedin link here if needed
+      hoverClass: "hover:bg-[#0077B5] hover:text-white"
+    }
+  ]
+
   return (
     <footer className="bg-[#C9A227] text-black pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-4 gap-10">
@@ -24,11 +48,13 @@ const Footer = () => {
 
           {/* Social Icons */}
           <div className="flex items-center gap-4 mt-2">
-            {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
+            {socialLinks.map(({ Icon, href, hoverClass }, i) => (
               <Link
                 key={i}
-                href="#"
-                className="p-2 rounded-full bg-black/10 hover:bg-black hover:text-[#C9A227] transition-all duration-300"
+                href={href}
+                target="_blank" // Opens in a new tab
+                rel="noopener noreferrer" // Security best practice
+                className={`p-2 rounded-full bg-black/10 text-black transition-all duration-300 ${hoverClass}`}
               >
                 <Icon size={18} />
               </Link>
