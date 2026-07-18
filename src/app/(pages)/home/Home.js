@@ -1,6 +1,5 @@
-// app/page.js
 'use client'
-import React, { Suspense, useRef, useEffect } from 'react'
+import React, { Suspense, useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
@@ -12,11 +11,10 @@ function Model({ url }) {
   const modelRef = useRef()
   const mixerRef = useRef()
   const timeRef = useRef(0)
-  
+
   // Change colors to silver/grey
   useEffect(() => {
     if (scene) {
-      // Apply silver/grey materials
       scene.traverse((child) => {
         if (child.isMesh) {
           if (child.material) {
@@ -39,7 +37,6 @@ function Model({ url }) {
         }
       })
       
-      // Setup animations if they exist
       if (animations && animations.length > 0) {
         mixerRef.current = new THREE.AnimationMixer(scene)
         animations.forEach((clip) => {
@@ -57,26 +54,18 @@ function Model({ url }) {
     }
   }, [scene, animations])
   
-  // Automatic movement loop - circular rotation (straight)
   useFrame(({ mouse }, delta) => {
     if (modelRef.current) {
-      // Update time for smooth looping
       timeRef.current += delta * 0.5
-      
-      // Circular rotation - robot rotates in a full circle
       const targetRotY = timeRef.current
-      
-      // Keep it perfectly straight (no X or Z rotation)
       const targetRotX = 0
       const targetRotZ = 0
       
-      // Smooth easing for natural feel
       modelRef.current.rotation.y += (targetRotY - modelRef.current.rotation.y) * 0.05
       modelRef.current.rotation.x += (targetRotX - modelRef.current.rotation.x) * 0.05
       modelRef.current.rotation.z += (targetRotZ - modelRef.current.rotation.z) * 0.05
     }
     
-    // Update animation mixer
     if (mixerRef.current) {
       mixerRef.current.update(delta)
     }
@@ -85,14 +74,81 @@ function Model({ url }) {
   return <primitive ref={modelRef} object={scene} scale={0.9} position={[0, -1.5, 0]} />
 }
 
-// Preload the model
 useGLTF.preload('/images/nexbot_by_aximoris_copy_copy.gltf')
 
 const Home = () => {
+  const videoRef = useRef(null)
+  const [isMuted, setIsMuted] = useState(true)
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => {
+        console.log("Autoplay context handled smoothly", err)
+      })
+    }
+  }, [])
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted
+      setIsMuted(videoRef.current.muted)
+    }
+  }
+
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="w-full bg-white min-h-screen flex items-center mt-25 relative overflow-hidden">
+      
+  {/* 1st Section: Only Video with Top Adjustment & Center Positioning */}
+<section className="w-full h-screen relative overflow-hidden bg-black flex flex-col items-center justify-center pt-20 pb-10">
+  
+  {/* Video Wrapper Container to control perfect scale */}
+  <div className="w-full h-[80vh] max-w-7xl px-4 flex items-center justify-center">
+    <video
+      ref={videoRef}
+      src="/images/WhatsApp Video 2026-07-18 at 10.54.44 AM.mp4"
+      autoPlay
+      loop
+      muted={isMuted}
+      playsInline
+      className="w-full h-full object-contain mx-auto" 
+      style={{ objectPosition: 'center center' }} 
+      /* Is se video perfectly desktop horizontal center aur vertical center rahegi */
+    />
+  </div>
+
+  {/* Premium Smooth Glassmorphism Audio Toggle Button */}
+  <button 
+    onClick={toggleMute}
+    className="absolute bottom-12 right-10 z-30 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white p-4 rounded-full transition-all duration-300 shadow-2xl flex items-center gap-2 group active:scale-95"
+  >
+    {isMuted ? (
+      <>
+        <span className="text-xs font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-1">TAP FOR MUSIC</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75 19.5 12m0 0 2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6 4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+        </svg>
+      </>
+    ) : (
+      <>
+        <span className="text-xs font-bold tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300 px-1">MUTE</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 animate-pulse">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 0 1 0 12.728M16.463 8.288a5.25 5.25 0 0 1 0 7.424M6.75 8.25l4.72-4.72a.75.75 0 0 1 1.28.53v15.88a.75.75 0 0 1-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.009 9.009 0 0 1 2.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75Z" />
+        </svg>
+      </>
+    )}
+  </button>
+
+  {/* Subtle Scroll Down Indicator */}
+  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-white/40 text-xs font-medium tracking-widest pointer-events-none animate-bounce flex flex-col items-center">
+    <span className="mb-1">SCROLL DOWN</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-3 h-3">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+    </svg>
+  </div>
+</section>
+
+      {/* 2nd Section: As-it-is Original Content and 3D Robot */}
+      <section className="w-full bg-white min-h-screen flex items-center relative overflow-hidden py-20">
         
         {/* Background Decorative Elements */}
         <div className="absolute top-20 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
@@ -108,7 +164,7 @@ const Home = () => {
               
               {/* Small Heading with Animation */}
               <p 
-                className="text-sm uppercase font-bold mt-24 animate-fade-in"
+                className="text-sm uppercase font-bold animate-fade-in"
                 style={{ color: '#C9A227' }}
               >
                 DIGITAL & TECH AGENCY
@@ -201,7 +257,6 @@ const Home = () => {
           
         </div>
       </section>
-
       
       {/* Stats Section */}
       <section className="w-full bg-white py-8 mt-15 mb-15">

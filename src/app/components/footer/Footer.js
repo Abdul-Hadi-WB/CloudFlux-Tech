@@ -105,7 +105,7 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-12 border-t border-black/20 pt-6 text-center text-black/70 text-sm">
+      <div className="mt-12 border-t border-black/20 pt-6 text-center text-black/70 text-sm"> 
         © {new Date().getFullYear()} 
         <span className="font-semibold"> CloudFlux Tech</span>. All rights reserved.
       </div>
