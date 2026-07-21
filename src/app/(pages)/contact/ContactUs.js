@@ -67,12 +67,8 @@ const ContactUs = () => {
     details: ''
   });
 
-  // Newsletter State
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-
-  // Loading States for Submissions
+  // Loading State for Project Form Submission
   const [isSubmittingProject, setIsSubmittingProject] = useState(false);
-  const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
 
   // Handle Project Form Inputs
   const handleProjectChange = (e) => {
@@ -112,38 +108,6 @@ const ContactUs = () => {
       alert("Network Error! Form submit nahi ho saka.");
     } finally {
       setIsSubmittingProject(false);
-    }
-  };
-
-  // Submit Newsletter Form to Email
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmittingNewsletter(true);
-
-    try {
-      const response = await fetch("https://formsubmit.co/ajax/cloudfluxtech1@gmail.com", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          Form_Type: "New Newsletter Subscription",
-          Subscriber_Email: newsletterEmail
-        })
-      });
-
-      if (response.ok) {
-        alert("Thank you for subscribing!");
-        setNewsletterEmail('');
-      } else {
-        alert("Oops! Subscription fail ho gayi.");
-      }
-    } catch (error) {
-      console.error(error);
-      alert("Network Error!");
-    } finally {
-      setIsSubmittingNewsletter(false);
     }
   };
 
@@ -233,31 +197,30 @@ const ContactUs = () => {
             </form>
           </div>
 
-          {/* RIGHT SIDE: NEWSLETTER & LARGE IMAGE */}
+          {/* RIGHT SIDE: AUTH BUTTONS & LARGE IMAGE */}
           <div>
             <h3 className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6">
-              Stay up to date on global innovations.
+              Join or Access Your Account
             </h3>
 
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <input
-                type="email"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="Your email"
-                required
-                className="flex-1 border border-gray-300 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 outline-none hover:border-black focus:border-black focus:ring-1 focus:ring-black transition-all duration-300 text-sm sm:text-base"
-              />
-              <button 
-                type="submit"
-                disabled={isSubmittingNewsletter}
-                className="bg-black text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full hover:scale-105 transition w-full sm:w-auto text-sm sm:text-base font-medium disabled:bg-gray-400 whitespace-nowrap"
+            {/* SIGN UP & LOGIN BUTTONS */}
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <Link 
+                href="/signup" 
+                className="bg-black text-white text-center py-2.5 sm:py-3 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base"
               >
-                {isSubmittingNewsletter ? "Signing Up..." : "Sign Up"}
-              </button>
-            </form>
+                Sign Up
+              </Link>
 
-            {/* FULL SIZE IMAGE - Removed max-width constraints */}
+              <Link 
+                href="/login" 
+                className="border border-black text-black text-center py-2.5 sm:py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 text-sm sm:text-base"
+              >
+                Login
+              </Link>
+            </div>
+
+            {/* FULL SIZE IMAGE */}
             <div className="w-full flex justify-center">
               <img
                 src="/images/Contactlogo.png"

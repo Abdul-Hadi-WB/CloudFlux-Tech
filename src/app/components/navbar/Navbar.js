@@ -20,7 +20,7 @@ const Navbar = () => {
               MAKE A REFERRAL
             </Link>
             <span className="text-black/50">|</span>
-            <Link href="/client-login" className="text-black font-medium hover:underline">
+            <Link href="/login" className="text-black font-medium hover:underline">
               CLIENT LOGIN
             </Link>
           </div>
