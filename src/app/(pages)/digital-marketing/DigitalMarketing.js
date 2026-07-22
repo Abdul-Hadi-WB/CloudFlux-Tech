@@ -15,7 +15,7 @@ const DigitalMarketing = () => {
     '/images/pic2.jpeg'
   ]
 
-  // Campaign Dashboard Images (Ab isme bhi sirf wahi 2 images hain)
+  // Campaign Dashboard Images
   const images = [
     '/images/pic1.jpeg',
     '/images/pic2.jpeg',
@@ -98,11 +98,11 @@ const DigitalMarketing = () => {
     return () => clearInterval(timer)
   }, [portfolioImages.length])
 
-  // Mouse parallax effect
+  // Mouse parallax effect for 3D card
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-  const rotateX = useTransform(mouseY, [-300, 300], [8, -8])
-  const rotateY = useTransform(mouseX, [-300, 300], [-8, 8])
+  const rotateX = useTransform(mouseY, [-300, 300], [12, -12])
+  const rotateY = useTransform(mouseX, [-300, 300], [-12, 12])
 
   const handleMouseMove = (e) => {
     const rect = containerRef.current?.getBoundingClientRect()
@@ -119,18 +119,30 @@ const DigitalMarketing = () => {
     mouseY.set(0)
   }
 
+  // Animation Variant for Sliding Sections
+  const sectionVariant = {
+    hidden: { opacity: 0, y: 60 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1.0] } 
+    }
+  }
+
   return (
     <>
-      {/* Main Digital Marketing Section */}
-      <section className="w-full bg-white py-24 relative overflow-hidden">
-        
-        {/* Background Decorative Elements */}
+      {/* 1. Main Digital Marketing Section */}
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full bg-white py-24 relative overflow-hidden"
+      >
         <div className="absolute top-20 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
         
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 relative z-10">
-          
-          {/* Two Column Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             
             {/* Left Column - Services */}
@@ -141,27 +153,20 @@ const DigitalMarketing = () => {
               transition={{ duration: 0.6 }}
               className="flex flex-col space-y-6"
             >
-              {/* Small Heading */}
-              <p 
-                className="text-sm uppercase font-bold mt-24"
-                style={{ color: '#C9A227' }}
-              >
+              <p className="text-sm uppercase font-bold mt-24" style={{ color: '#C9A227' }}>
                 Digital Marketing
               </p>
               
-              {/* Main Heading */}
               <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">
                 Grow Your Business With<br/>Data-Driven Marketing
               </h2>
               
-              {/* Description */}
               <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
                 From SEO and social media to PPC campaigns and content strategy, 
                 we deliver results-driven marketing solutions that increase visibility, 
                 drive qualified traffic, and boost your bottom line.
               </p>
 
-              {/* Services Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4">
                 {services.map((service, index) => (
                   <motion.div
@@ -188,7 +193,6 @@ const DigitalMarketing = () => {
                 ))}
               </div>
 
-              {/* CTA Button */}
               <div className="pt-6">
                 <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40">
                   <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
@@ -202,7 +206,6 @@ const DigitalMarketing = () => {
                 </button>
               </div>
 
-              {/* Trust Indicators */}
               <div className="flex items-center gap-6 pt-4">
                 <div className="flex -space-x-2">
                   {[1,2,3,4].map((i) => (
@@ -218,22 +221,22 @@ const DigitalMarketing = () => {
               </div>
             </motion.div>
             
-            {/* Right Column - Laptop Mockup with Live Previews */}
+            {/* Right Column - 3D Card laptop mockup */}
             <motion.div
               ref={containerRef}
-              initial={{ opacity: 0, scale: 0.8, rotateY: 15 }}
+              initial={{ opacity: 0, scale: 0.85, rotateY: 20 }}
               whileInView={{ opacity: 1, scale: 1, rotateY: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, type: "spring" }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="relative flex justify-center items-center perspective-1000 sticky top-24"
-              style={{ perspective: 1000 }}
+              className="relative flex justify-center items-center sticky top-24 preserve-3d"
+              style={{ perspective: 1200 }}
             >
               <motion.div 
-                className="relative w-full max-w-xl z-10"
-                style={{ rotateX, rotateY }}
-                transition={{ type: "spring", damping: 30 }}
+                className="relative w-full max-w-xl z-10 transform-gpu shadow-2xl rounded-2xl"
+                style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+                transition={{ type: "spring", damping: 25, stiffness: 150 }}
               >
                 <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-20">
                   <div className="bg-black/80 backdrop-blur-md rounded-full px-4 py-1.5 flex items-center gap-2">
@@ -242,7 +245,7 @@ const DigitalMarketing = () => {
                   </div>
                 </div>
                 
-                <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-t-2xl p-4 shadow-2xl">
+                <div className="relative bg-gradient-to-b from-gray-800 to-gray-900 rounded-t-2xl p-4 shadow-2xl border-t border-l border-white/20">
                   <div className="relative bg-black rounded-xl overflow-hidden shadow-inner" style={{ aspectRatio: '16/9' }}>
                     <div 
                       ref={scrollRef}
@@ -284,7 +287,7 @@ const DigitalMarketing = () => {
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-2xl p-3 shadow-xl">
+                <div className="bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-2xl p-3 shadow-xl border-b border-l border-white/10">
                   <div className="bg-gray-900 rounded-xl p-3">
                     <div className="grid grid-cols-12 gap-1 mb-3">
                       {[...Array(48)].map((_, i) => (
@@ -311,11 +314,16 @@ const DigitalMarketing = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* NEW SECTION: AUTOPLAYING PORTFOLIO CAROUSEL            */}
-      {/* ======================================================= */}
-      <section className="w-full bg-gray-50 py-24 overflow-hidden border-t border-gray-100">
+      {/* 2. PORTFOLIO SECTION (No 3D/Card animation effect on cards as requested) */}
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full bg-gray-50 py-24 overflow-hidden border-t border-gray-100"
+      >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 mb-12 text-center">
           <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>
             Our Work
@@ -326,7 +334,6 @@ const DigitalMarketing = () => {
         </div>
 
         <div className="max-w-4xl mx-auto px-5 md:px-10 relative">
-          {/* Main Frame Slider */}
           <div className="w-full overflow-hidden rounded-2xl shadow-xl bg-white p-2 border border-gray-100">
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
               <motion.div
@@ -348,7 +355,6 @@ const DigitalMarketing = () => {
             </div>
           </div>
 
-          {/* Pagination Navigation Dots */}
           <div className="flex justify-center gap-2.5 mt-6">
             {portfolioImages.map((_, idx) => (
               <button
@@ -364,10 +370,16 @@ const DigitalMarketing = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Digital Marketing Services Section */}
-      <section className="w-full bg-white py-16 relative overflow-hidden">
+      {/* 3. Digital Marketing Services Section */}
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full bg-white py-16 relative overflow-hidden"
+      >
         <div className="max-w-6xl mx-auto px-5 md:px-8 lg:px-10 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-black leading-tight">
@@ -400,10 +412,16 @@ const DigitalMarketing = () => {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
       
-      {/* Expert Section - Digital Marketing */}
-      <section className="w-full py-16 bg-[#FFF8E1]">
+      {/* 4. Expert Section */}
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full py-16 bg-[#FFF8E1]"
+      >
         <div className="max-w-5xl mx-auto px-6 md:px-8">
           <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
             <div className="flex-shrink-0 flex flex-col items-center -mt-2">
@@ -441,18 +459,24 @@ const DigitalMarketing = () => {
                 </li>
               </ul>
               <p className="italic text-sm md:text-base leading-relaxed mb-4">
-              “In today's digital world, visibility is everything. My passion is helping businesses cut through the noise and connect with their ideal customers. Whether it's SEO, social media, or paid ads, I create data-driven strategies that deliver real, measurable growth - not just vanity metrics.”
+                “In today's digital world, visibility is everything. My passion is helping businesses cut through the noise and connect with their ideal customers. Whether it's SEO, social media, or paid ads, I create data-driven strategies that deliver real, measurable growth - not just vanity metrics.”
               </p>
               <p className="text-sm md:text-base leading-relaxed">
-              At CloudFlux Tech, we don't believe in one-size-fits-all marketing. We take time to understand your unique brand voice, target audience, and business goals. From keyword research to campaign optimization, every decision is backed by data and focused on ROI. Let's turn your digital presence into your biggest asset.
+                At CloudFlux Tech, we don't believe in one-size-fits-all marketing. We take time to understand your unique brand voice, target audience, and business goals. From keyword research to campaign optimization, every decision is backed by data and focused on ROI. Let's turn your digital presence into your biggest asset.
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
       
-      {/* Digital Marketing Expertise Section */}
-      <section className="w-full bg-white py-16 overflow-hidden">
+      {/* 5. Marketing Expertise Section with FIXED Side Image (No white box) */}
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full bg-white py-16 overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col space-y-6 order-1">
@@ -476,32 +500,37 @@ const DigitalMarketing = () => {
               </div>
             </div>
             
-            <div className="relative flex items-center justify-center w-full ml-auto max-w-2xl"> 
-  {/* Background Glow */}
-  <div className="absolute w-[400px] h-[400px] bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
-  
-  {/* Background Border Circle */}
-  <div className="absolute w-[500px] h-[500px] border border-[#C9A227]/20 rounded-full"></div>
-  
-  {/* Main Image */}
-  <div className="relative">
-    <Image
-      src="/images/Marketing.png"
-      alt="Marketing Expertise"
-      width={1200}
-      height={1200}
-      className="w-full h-auto object-contain relative z-10 drop-shadow-xl" 
-    />
-  </div>
-</div>
+            {/* Side Image - FIXED: No white box, border, or backdrop blur */}
+            <div className="relative flex items-center justify-center w-full ml-auto max-w-2xl perspective-1000"> 
+              <div className="absolute w-[400px] h-[400px] bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute w-[500px] h-[500px] border border-[#C9A227]/20 rounded-full"></div>
+              
+              <motion.div 
+                whileHover={{ rotateY: -12, rotateX: 6, scale: 1.03 }}
+                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                className="relative z-10" // Removed background, padding, border, blur
+              >
+                <Image
+                  src="/images/Marketing.png"
+                  alt="Marketing Expertise"
+                  width={1200}
+                  height={1200}
+                  className="w-full h-auto object-contain relative z-10 drop-shadow-xl" // Kept only shadow
+                />
+              </motion.div>
+            </div>
           </div>
         </div>
-      </section>
-      
+      </motion.section>
 
-
-      {/* Digital Marketing Pricing Section */}
-      <section className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden">
+      {/* 6. Pricing Section */}
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden"
+      >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 relative z-10">
           <div className="text-center mb-16">
             <p className="text-sm uppercase font-bold tracking-wider mb-3 inline-block px-4 py-1.5 rounded-full bg-[#C9A227]/10" style={{ color: '#C9A227' }}>
@@ -612,7 +641,7 @@ const DigitalMarketing = () => {
             </p>
           </div>
         </div>
-      </section>
+      </motion.section>
     </>
   )
 }

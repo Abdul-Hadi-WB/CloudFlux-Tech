@@ -4,6 +4,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef, useMemo, useState } from 'react';
 import * as THREE from 'three';
 import Link from "next/link";
+import { motion } from 'framer-motion';
 
 // Simple particle system (future use if needed)
 const Particles = () => {
@@ -112,11 +113,17 @@ const ContactUs = () => {
   };
 
   return (
-    <section className="w-full bg-white pt-12 pb-12 sm:pt-20 sm:pb-20 lg:py-24 px-4 sm:px-6 mt-12 sm:mt-16 lg:mt-20">
+    <section className="w-full bg-white pt-12 pb-12 sm:pt-20 sm:pb-20 lg:py-24 px-4 sm:px-6 mt-12 sm:mt-16 lg:mt-20 overflow-hidden">
       <div className="max-w-full lg:max-w-6xl mx-auto">
 
-        {/* Heading */}
-        <div className="text-center mb-10 sm:mb-14 lg:mb-16">
+        {/* Heading with Fade-in Animation */}
+        <motion.div 
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10 sm:mb-14 lg:mb-16"
+        >
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-3 sm:mb-4">
             Contact Us
           </h2>
@@ -124,12 +131,18 @@ const ContactUs = () => {
             Team CloudFlux Tech is just a click away from you. Connect with us to get
             solutions to your business growth, market existence, and sustainability.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16">
+        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 items-start">
 
-          {/* LEFT SIDE: PROJECT FORM */}
-          <div>
+          {/* LEFT SIDE: PROJECT FORM (Slides from Left) */}
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full"
+          >
             <h3 className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6">
               Share your demands and Quries with us
             </h3>
@@ -195,10 +208,16 @@ const ContactUs = () => {
                 {isSubmittingProject ? "Sending..." : "Submit Project"}
               </button>
             </form>
-          </div>
+          </motion.div>
 
-          {/* RIGHT SIDE: AUTH BUTTONS & LARGE IMAGE */}
-          <div>
+          {/* RIGHT SIDE: AUTH BUTTONS & LARGE IMAGE (Slides from Right) */}
+          <motion.div
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="w-full"
+          >
             <h3 className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6">
               Join or Access Your Account
             </h3>
@@ -228,7 +247,7 @@ const ContactUs = () => {
                 className="w-full h-auto object-contain mt-6 sm:mt-8 lg:mt-10"
               />
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

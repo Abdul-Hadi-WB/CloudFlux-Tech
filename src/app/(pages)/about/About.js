@@ -1,13 +1,73 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 const About = () => {
+  // -------------------------------------------------------------
+  // 3D Perspective Hover Logic (Home Page Style)
+  // -------------------------------------------------------------
+  const x = useMotionValue(0)
+  const y = useMotionValue(0)
+
+  const mouseXSpring = useSpring(x, { stiffness: 150, damping: 15 })
+  const mouseYSpring = useSpring(y, { stiffness: 150, damping: 15 })
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ['15deg', '-15deg'])
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ['-15deg', '15deg'])
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const width = rect.width
+    const height = rect.height
+    const mouseX = e.clientX - rect.left
+    const mouseY = e.clientY - rect.top
+
+    const xPct = mouseX / width - 0.5
+    const yPct = mouseY / height - 0.5
+
+    x.set(xPct)
+    y.set(yPct)
+  }
+
+  const handleMouseLeave = () => {
+    x.set(0)
+    y.set(0)
+  }
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen relative overflow-hidden">
       
+      {/* ======================================================= */}
+      {/* BACKGROUND FLOATING PARTICLES                           */}
+      {/* ======================================================= */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-[#C9A227]/30 blur-[1px]"
+            style={{
+              width: `${(i % 3) * 4 + 4}px`,
+              height: `${(i % 3) * 4 + 4}px`,
+              top: `${(i * 17) % 100}%`,
+              left: `${(i * 23) % 100}%`,
+            }}
+            animate={{
+              y: [0, -40, 0],
+              x: [0, (i % 2 === 0 ? 20 : -20), 0],
+              opacity: [0.2, 0.7, 0.2],
+            }}
+            transition={{
+              duration: 5 + (i % 4),
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.3,
+            }}
+          />
+        ))}
+      </div>
+
       {/* ======================================================= */}
       {/* 1. HERO SECTION (Symmetric Tech Brand Layout)            */}
       {/* ======================================================= */}
@@ -21,10 +81,10 @@ const About = () => {
             
             {/* Left Column - Content Framework */}
             <motion.div 
-              initial={{ opacity: 0, x: -50 }}
+              initial={{ opacity: 0, x: -70 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
               className="flex flex-col space-y-6"
             >
               <p 
@@ -48,7 +108,6 @@ const About = () => {
               
               {/* Dual Action CTA Buttons Overlay */}
               <div className="flex flex-wrap gap-4 pt-2 justify-center md:justify-start">
-                {/* Primary Button with Glass Shimmer & Ping Effects */}
                 <Link href="/contact" className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] text-black font-semibold text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40">
                   <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
                   <span className="relative z-10 flex items-center">
@@ -74,28 +133,67 @@ const About = () => {
               </div>
             </motion.div>
             
-            {/* Right Column - Brand Creative Graphic Architecture */}
+            {/* Right Column - 3D INTERACTIVE TILT IMAGE ARCHITECTURE */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: 70 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="relative flex justify-center items-center h-[450px] md:h-[500px]"
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="relative flex justify-center items-center h-[450px] md:h-[500px] perspective-1000"
+              style={{ perspective: 1200 }}
             >
-              <div className="absolute w-72 h-72 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
-              <div className="absolute w-96 h-96 border border-dashed border-gray-200 rounded-full animate-[spin_60s_linear_infinite]"></div>
-              
-              <div className="relative z-10 w-full max-w-md h-auto aspect-square flex items-center justify-center">
-                <Image
-                  src="/images/transparent_image.png"
-                  alt="About CloudFlux Tech Core Visual"
-                  width={450}
-                  height={450}
-                  className="w-full h-auto object-contain drop-shadow-2xl filter saturate-110"
-                  priority
-                />
-              </div>
+              {/* Interactive 3D Wrapper */}
+              <motion.div
+                onMouseMove={handleMouseMove}
+                onMouseLeave={handleMouseLeave}
+                style={{
+                  rotateX,
+                  rotateY,
+                  transformStyle: "preserve-3d"
+                }}
+                className="relative w-full max-w-md h-auto aspect-square flex items-center justify-center cursor-pointer group"
+              >
+                {/* 3D Depth Rings & Background Orbs */}
+                <div 
+                  className="absolute w-72 h-72 bg-[#C9A227]/20 rounded-full blur-3xl transition-transform duration-500 group-hover:scale-110"
+                  style={{ transform: "translateZ(-80px)" }}
+                ></div>
+                
+                <div 
+                  className="absolute w-80 h-80 border-2 border-[#C9A227]/30 rounded-full transition-transform duration-500 group-hover:border-[#C9A227]/60"
+                  style={{ transform: "translateZ(-40px)" }}
+                ></div>
+
+                <div 
+                  className="absolute w-96 h-96 border border-dashed border-[#C9A227]/20 rounded-full animate-[spin_60s_linear_infinite]"
+                  style={{ transform: "translateZ(-20px)" }}
+                ></div>
+
+                {/* Main 3D Floating Image with Pop Effect */}
+                <motion.div 
+                  className="relative z-10 w-full h-full flex items-center justify-center"
+                  style={{ transform: "translateZ(60px)" }}
+                >
+                  <Image
+                    src="/images/transparent_image.png"
+                    alt="About CloudFlux Tech Core Visual"
+                    width={450}
+                    height={450}
+                    className="w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(201,162,39,0.25)] filter saturate-110 transition-all duration-300 group-hover:drop-shadow-[0_35px_45px_rgba(201,162,39,0.4)]"
+                    priority
+                  />
+                </motion.div>
+
+                {/* 3D Floating Glass Accent Badge */}
+                <motion.div
+                  className="absolute -bottom-2 -right-2 bg-white/80 backdrop-blur-md border border-[#C9A227]/30 px-4 py-2 rounded-2xl shadow-xl flex items-center gap-2.5 z-20 pointer-events-none"
+                  style={{ transform: "translateZ(90px)" }}
+                >
+                  <span className="w-3 h-3 rounded-full bg-[#C9A227] animate-ping"></span>
+                  <span className="text-xs font-bold text-black tracking-wide">3D Tech Architecture</span>
+                </motion.div>
+              </motion.div>
+
             </motion.div>
 
           </div>
@@ -121,11 +219,12 @@ const About = () => {
             
             {/* Capability Item: Web Development */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              whileHover={{ y: -8, rotateX: 5, rotateY: -5 }}
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-2xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-[#C9A227]/10 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
                 💻
@@ -140,11 +239,12 @@ const About = () => {
 
             {/* Capability Item: Social Media Marketing */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.2 }}
+              whileHover={{ y: -8, rotateX: 5, rotateY: -5 }}
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-2xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-[#C9A227]/10 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
                 📱
@@ -159,11 +259,12 @@ const About = () => {
 
             {/* Capability Item: Video Editing */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.3 }}
+              whileHover={{ y: -8, rotateX: 5, rotateY: 5 }}
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-2xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-[#C9A227]/10 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
                 🎬
@@ -178,11 +279,12 @@ const About = () => {
 
             {/* Capability Item: Graphic Design */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.4 }}
-              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-xl transition-all duration-300"
+              transition={{ duration: 0.5, delay: 0.4 }}
+              whileHover={{ y: -8, rotateX: 5, rotateY: 5 }}
+              className="group bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-100 hover:border-[#C9A227]/30 hover:shadow-2xl transition-all duration-300"
             >
               <div className="w-12 h-12 bg-[#C9A227]/10 rounded-xl flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition-transform duration-300">
                 🎨
@@ -210,7 +312,13 @@ const About = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
               
               {/* Left Grid Side: Narrative Content Checkmarks */}
-              <div className="lg:col-span-7 space-y-6">
+              <motion.div 
+                initial={{ opacity: 0, x: -60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="lg:col-span-7 space-y-6"
+              >
                 <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>
                   THE CLOUDFLUX ADVANTAGE
                 </p>
@@ -240,20 +348,29 @@ const About = () => {
                     24/7 Dedicated Support
                   </li>
                 </ul>
-              </div>
+              </motion.div>
 
-              {/* Right Grid Side: Interactive Tech Dashboard (Replaces image_303006.png placeholder) */}
-              <div className="lg:col-span-5 w-full relative flex justify-center items-center">
+              {/* Right Grid Side: Interactive Tech Dashboard with 3D Hover Tilt */}
+              <motion.div 
+                initial={{ opacity: 0, x: 60 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="lg:col-span-5 w-full relative flex justify-center items-center"
+              >
                 <div className="absolute inset-0 bg-[#C9A227]/10 blur-3xl rounded-full"></div>
-                <div className="w-full aspect-[4/3] rounded-2xl bg-white/70 backdrop-blur-md border border-white p-2 shadow-xl overflow-hidden relative group">
+                <motion.div 
+                  whileHover={{ rotateY: -10, rotateX: 8, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                  className="w-full aspect-[4/3] rounded-2xl bg-white/70 backdrop-blur-md border border-white p-2 shadow-2xl overflow-hidden relative group cursor-pointer"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
                   
                   {/* Premium Live HTML/CSS Dashboard Integration */}
                   <div className="w-full h-full rounded-xl overflow-hidden bg-gradient-to-br from-gray-950 to-black p-5 relative flex flex-col justify-between border border-gray-800">
-                    {/* Decorative Glowing Orbs */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-[#C9A227]/20 rounded-full blur-2xl"></div>
                     <div className="absolute bottom-0 left-0 w-32 h-32 bg-gray-500/10 rounded-full blur-2xl"></div>
                     
-                    {/* Tech Grid Background Effect */}
                     <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:14px_24px]"></div>
 
                     {/* Top Row: Header & Status */}
@@ -273,21 +390,20 @@ const About = () => {
 
                     {/* Middle Row: Charts & Data Visualization */}
                     <div className="relative z-10 grid grid-cols-3 gap-3 my-auto items-end h-28 pt-2">
-                      {/* Bar 1 */}
                       <div className="flex flex-col items-center gap-1.5 h-full justify-end">
                         <div className="w-full bg-gray-800/30 rounded-t-md h-[40%] relative overflow-hidden border border-gray-700/30">
                           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-500 to-gray-400 h-full"></div>
                         </div>
                         <span className="text-[9px] font-mono text-gray-500">Scale</span>
                       </div>
-                      {/* Bar 2 (Featured Gold Bar) */}
+                      
                       <div className="flex flex-col items-center gap-1.5 h-full justify-end">
                         <div className="w-full bg-gray-800/30 rounded-t-md h-[85%] relative overflow-hidden border border-[#C9A227]/30 shadow-[0_0_15px_rgba(201,162,39,0.15)]">
                           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#C9A227] to-[#DAA520] h-full"></div>
                         </div>
                         <span className="text-[9px] font-mono text-[#C9A227] font-bold">Growth</span>
                       </div>
-                      {/* Bar 3 */}
+
                       <div className="flex flex-col items-center gap-1.5 h-full justify-end">
                         <div className="w-full bg-gray-800/30 rounded-t-md h-[60%] relative overflow-hidden border border-gray-700/30">
                           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-500 to-gray-400 h-full"></div>
@@ -307,8 +423,8 @@ const About = () => {
                     </div>
                   </div>
 
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
             </div>
           </div>
@@ -320,28 +436,32 @@ const About = () => {
       {/* ======================================================= */}
       <section className="w-full bg-white py-16 text-center relative overflow-hidden">
         <div className="max-w-4xl mx-auto px-5 relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
-            Ready to Start Your Project?
-          </h2>
-          <p className="text-gray-500 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-            Contact us today and let's discuss how we can engineer tailored workflows to scale your conversion metrics instantly.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+              Ready to Start Your Project?
+            </h2>
+            <p className="text-gray-500 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+              Contact us today and let's discuss how we can engineer tailored workflows to scale your conversion metrics instantly.
+            </p>
 
-          {/* Dual Action CTA Buttons Overlay (Centered perfectly) */}
-          <div className="flex flex-wrap gap-4 pt-2 justify-center">
-            {/* Primary Button with Glass Shimmer & Ping Effects */}
-            <Link href="/contact" className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] text-black font-semibold text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40">
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
-              <span className="relative z-10 flex items-center">
-                GET STARTED
-                <span className="ml-2 text-xl transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">→</span>
-              </span>
-              <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
-              </span>
-            </Link>
-          </div>
-              
+            <div className="flex flex-wrap gap-4 pt-2 justify-center">
+              <Link href="/contact" className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] text-black font-semibold text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40">
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
+                <span className="relative z-10 flex items-center">
+                  GET STARTED
+                  <span className="ml-2 text-xl transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">→</span>
+                </span>
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
+                </span>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
