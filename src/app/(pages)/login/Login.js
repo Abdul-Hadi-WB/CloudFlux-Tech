@@ -1,8 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
+  const router = useRouter();
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -96,17 +99,29 @@ const Login = () => {
       sessionStorage.setItem('cloudflux_active_user', JSON.stringify(foundUser));
     }
 
+    // 🔴 YAHAN ADD KIYA HAI: Yeh event Navbar ko foran notify karega taake button gayab ho jaye
+    window.dispatchEvent(new Event('authChange'));
+
     setLoggedInUser(foundUser);
-    showAlert('success', `Welcome back, ${foundUser.fullName}! (${foundUser.role})`);
+    showAlert('success', `Welcome back, ${foundUser.fullName}! Redirecting to home...`);
     
     // Reset password field
     setFormData((prev) => ({ ...prev, password: '' }));
     setIsLoading(false);
+
+    // 4. Redirect to Home Page after a short delay
+    setTimeout(() => {
+      router.push('/');
+    }, 1200);
   };
 
   const handleLogout = () => {
     localStorage.removeItem('cloudflux_active_user');
     sessionStorage.removeItem('cloudflux_active_user');
+
+    // 🔴 YAHAN BHI ADD KIYA HAI: Logout par bhi Navbar ko notify karne ke liye
+    window.dispatchEvent(new Event('authChange'));
+
     setLoggedInUser(null);
     showAlert('info', 'You have been logged out successfully.');
   };
@@ -259,12 +274,10 @@ const Login = () => {
                 <p className="text-sm text-gray-600">
                   Don't have an account?{' '}
                   <a href="/signup" className="text-black font-bold hover:underline">
-                 Sign Up
+                   Sign Up
                   </a>
                 </p>
               </div>
-
-           
 
             </form>
           )}

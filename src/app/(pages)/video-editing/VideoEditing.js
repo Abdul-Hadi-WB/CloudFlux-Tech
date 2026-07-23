@@ -398,60 +398,70 @@ const VideoEditing = () => {
         </div>
       </motion.section>
       
-      {/* Expert Section - Video Editing */}
-      <motion.section 
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full py-16 bg-[#FFF8E1]"
-      >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
-          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
-            <div className="flex-shrink-0 flex flex-col items-center -mt-2">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <Image
-                  src="/images/video-editor.jpg"
-                  alt="Bilal Akhtar"
-                  width={96}
-                  height={96}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="font-bold text-white text-base">Bilal Akhtar</h4>
-                <p className="text-white/80 text-xs">Lead Video Editor</p>
-              </div>
-            </div>
-
-            <div className="text-white flex-1">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">
-                Who you'll be speaking with:
-              </h3>
-              <ul className="space-y-2 mb-5">
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> 4+ Years in Video Editing & Post-Production
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> Expert in Premiere Pro, After Effects & DaVinci Resolve
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> Specialized in Color Grading & Audio Mixing
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> 200+ YouTube & Social Media Videos Produced
-                </li>
-              </ul>
-              <p className="italic text-sm md:text-base leading-relaxed mb-4">
-              “Video is the most powerful medium for storytelling. My passion is taking raw footage and transforming it into compelling narratives that capture emotions, hold attention, and drive action. Every cut, transition, and effect serves the story we're telling together.”
-              </p>
-              <p className="text-sm md:text-base leading-relaxed">
-              At CloudFlux Tech, we understand that great video editing can make or break your content. We work closely with you to understand your vision, brand voice, and target audience. From pacing and rhythm to color grading and sound design, every detail is meticulously crafted to deliver professional results that stand out in today's crowded digital landscape.
-              </p>
-            </div>
+     {/* Expert Section - Video Editing */}
+<motion.section 
+  initial={{ opacity: 0, y: 60 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: "-100px" }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="w-full py-16 bg-[#FFF8E1]"
+>
+  <div className="max-w-5xl mx-auto px-6 md:px-8">
+    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+      <div className="flex-shrink-0 flex flex-col items-center -mt-2">
+        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+          <Image
+            src="/images/video-editor.jpg"
+            alt="Bilal Akhtar"
+            width={96}
+            height={96}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="mt-3 text-center">
+          <h4 className="font-bold text-white text-base">Bilal Akhtar</h4>
+          <p className="text-white/80 text-xs">Lead Video Editor</p>
+          
+          {/* Added Contact Number */}
+          <div className="mt-3">
+            <a 
+              href="tel:03001234567" 
+              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+            >
+              📞 0300 1234567
+            </a>
           </div>
         </div>
-      </motion.section>
+      </div>
+
+      <div className="text-white flex-1">
+        <h3 className="text-xl md:text-2xl font-bold mb-4">
+          Who you'll be speaking with:
+        </h3>
+        <ul className="space-y-2 mb-5">
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> 4+ Years in Video Editing & Post-Production
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> Expert in Premiere Pro, After Effects & DaVinci Resolve
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> Specialized in Color Grading & Audio Mixing
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> 200+ YouTube & Social Media Videos Produced
+          </li>
+        </ul>
+        <p className="italic text-sm md:text-base leading-relaxed mb-4">
+          “Video is the most powerful medium for storytelling. My passion is taking raw footage and transforming it into compelling narratives that capture emotions, hold attention, and drive action. Every cut, transition, and effect serves the story we're telling together.”
+        </p>
+        <p className="text-sm md:text-base leading-relaxed">
+          At CloudFlux Tech, we understand that great video editing can make or break your content. We work closely with you to understand your vision, brand voice, and target audience. From pacing and rhythm to color grading and sound design, every detail is meticulously crafted to deliver professional results that stand out in today's crowded digital landscape.
+        </p>
+      </div>
+    </div>
+  </div>
+</motion.section>
       
       {/* Video Editing Expertise Section with 3D Card Effect on Side Image */}
       <motion.section 

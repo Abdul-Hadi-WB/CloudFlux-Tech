@@ -347,58 +347,71 @@ const GraphicDesigning = () => {
         </div>
       </motion.section>
 
-      {/* Expert Section */}
-      <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full py-16 bg-[#FFF8E1]"
-      >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
-          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
-            <div className="flex-shrink-0 flex flex-col items-center -mt-2">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <Image
-                  src="/images/Founder@.jpeg"
-                  alt="Ali"
-                  width={96}
-                  height={96}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="font-bold text-white text-base">Ali Haider</h4>
-                <p className="text-white/80 text-xs">Founder - CloudFlux Tech</p>
-                <p className="text-white/60 text-xs mt-1">Senior Graphic Designer & SEO Expert</p>
-              </div>
-            </div>
-
-            <div className="text-white flex-1">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">
-                Who you'll be speaking with:
-              </h3>
-              <ul className="space-y-2 mb-5">
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> 5+ Years in Graphic & Brand Design
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> Expert in Adobe Creative Suite & Figma
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> Specialized in Brand Identity & Visual Storytelling
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> 150+ Brands Designed & Launched
-                </li>
-              </ul>
-              <p className="italic text-sm md:text-base leading-relaxed mb-4">
-                “Design is more than just aesthetics—it's the silent ambassador of your brand. Every color, font, and shape tells a story.”
-              </p>
-            </div>
+   {/* Expert Section */}
+<motion.section 
+  initial={{ opacity: 0, y: 50 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: "-100px" }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="w-full py-16 bg-[#FFF8E1]"
+>
+  <div className="max-w-5xl mx-auto px-6 md:px-8">
+    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+      <div className="flex-shrink-0 flex flex-col items-center -mt-2">
+        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+          <Image
+            src="/images/Founder@.jpeg"
+            alt="Ali"
+            width={96}
+            height={96}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="mt-3 text-center">
+          <h4 className="font-bold text-white text-base">Ali Haider</h4>
+          <p className="text-white/80 text-xs">Founder - CloudFlux Tech</p>
+          <p className="text-white/60 text-xs mt-1">Senior Graphic Designer & SEO Expert</p>
+          
+          {/* Added Contact Number */}
+          <div className="mt-3">
+            <a 
+              href="tel:03001234567" 
+              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+            >
+              📞 0300 1234567
+            </a>
           </div>
         </div>
-      </motion.section>
+      </div>
+
+      <div className="text-white flex-1">
+        <h3 className="text-xl md:text-2xl font-bold mb-4">
+          Who you'll be speaking with:
+        </h3>
+        <ul className="space-y-2 mb-5">
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> 5+ Years in Graphic & Brand Design
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> Expert in Adobe Creative Suite & Figma
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> Specialized in Brand Identity & Visual Storytelling
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> 150+ Brands Designed & Launched
+          </li>
+        </ul>
+        <p className="italic text-sm md:text-base leading-relaxed mb-4">
+          “Design is more than just aesthetics—it's the silent ambassador of your brand. Every color, font, and shape tells a story.”
+        </p>
+        <p className="text-sm md:text-base leading-relaxed">
+          At CloudFlux Tech, we believe that great branding combined with powerful SEO is the ultimate recipe for business growth. We work hand-in-hand with you to build a visual identity that resonates with your audience and establishes long-term market presence. Let's create something extraordinary together.
+        </p>
+      </div>
+    </div>
+  </div>
+</motion.section>
       
       {/* Design Expertise Section */}
       <motion.section 

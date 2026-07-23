@@ -1,28 +1,87 @@
 'use client'
-import React, { useState } from 'react'
+
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronDown, Menu, X } from 'lucide-react' // Mobile icons add kar diye hain
+import { ChevronDown, Menu, X, LogOut, User } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false) // Desktop dropdown state
   const [isMobileOpen, setIsMobileOpen] = useState(false) // Mobile drawer state
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false) // Mobile services submenu state
+  const [activeUser, setActiveUser] = useState(null) // Active session user state
+
+  // Function to check user session
+  const checkUserSession = () => {
+    const sessionUser = localStorage.getItem('cloudflux_active_user') || sessionStorage.getItem('cloudflux_active_user')
+    if (sessionUser) {
+      try {
+        setActiveUser(JSON.parse(sessionUser))
+      } catch (e) {
+        console.error("Error parsing user session:", e)
+        setActiveUser(null)
+      }
+    } else {
+      setActiveUser(null)
+    }
+  }
+
+  useEffect(() => {
+    // Initial check on mount
+    checkUserSession()
+
+    // Listen for custom login/logout events across the app
+    window.addEventListener('authChange', checkUserSession)
+    window.addEventListener('storage', checkUserSession)
+
+    return () => {
+      window.removeEventListener('authChange', checkUserSession)
+      window.removeEventListener('storage', checkUserSession)
+    }
+  }, [])
+
+  // Handle Logout function
+  const handleLogout = () => {
+    localStorage.removeItem('cloudflux_active_user')
+    sessionStorage.removeItem('cloudflux_active_user')
+    setActiveUser(null)
+    
+    // Dispatch event so other components/navbar know session is cleared
+    window.dispatchEvent(new Event('authChange'))
+    window.location.href = '/' // Redirect to home
+  }
 
   return (
     <nav className="w-full fixed top-0 left-0 z-50 bg-white shadow-sm">
       {/* Top Strip with Gradient - Blackish to #C9A227 */}
       <div className="w-full bg-gradient-to-r from-[#8B6B1E] to-[#C9A227] py-2">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex justify-end items-center">
-          {/* Right side - Make a Referral | Client Login */}
+          {/* Right side - Make a Referral | Client Login or User Email */}
           <div className="flex items-center gap-3 text-sm">
             <Link href="/referral" className="text-black font-medium hover:underline">
               MAKE A REFERRAL
             </Link>
             <span className="text-black/50">|</span>
-            <Link href="/login" className="text-black font-medium hover:underline">
-              CLIENT LOGIN
-            </Link>
+
+            {activeUser ? (
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 bg-black/10 px-3 py-0.5 rounded-full text-black font-semibold text-xs sm:text-sm">
+                  <User size={14} className="text-black" />
+                  <span className="truncate max-w-[150px] sm:max-w-[200px]">{activeUser.email}</span>
+                </div>
+                <button 
+                  onClick={handleLogout}
+                  title="Logout"
+                  className="text-black hover:text-red-700 transition duration-200 p-1"
+                >
+                  <LogOut size={16} />
+                </button>
+              </div>
+            ) : (
+              <Link href="/login" className="text-black font-medium hover:underline">
+                CLIENT LOGIN
+              </Link>
+            )}
           </div>
         </div>
       </div>
@@ -62,7 +121,7 @@ const Navbar = () => {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#C9A227] transition-all duration-300 group-hover:w-full"></span>
               </Link>
 
-              {/* Services Dropdown - PROFESSIONAL VERSION */}
+              {/* Services Dropdown */}
               <div 
                 className="relative"
                 onMouseEnter={() => setIsOpen(true)}
@@ -86,10 +145,8 @@ const Navbar = () => {
                   }`}
                 >
                   <div className="bg-white border border-[#C9A227]/20 rounded-xl shadow-xl overflow-hidden">
-                    {/* Decorative top border */}
                     <div className="h-1 bg-gradient-to-r from-[#8B6B1E] to-[#C9A227]"></div>
                     
-                    {/* Menu items with hover effects */}
                     <div className="p-2">
                       <Link 
                         href="/web-development" 
@@ -128,7 +185,7 @@ const Navbar = () => {
               </div>
 
               <Link 
-                href="/contact"
+                href="/contact" 
                 className="relative hover:text-[#C9A227] transition duration-300 group"
               >
                 Contact
@@ -138,14 +195,14 @@ const Navbar = () => {
 
             {/* Desktop Right Side Button */}
             <div className="hidden md:flex items-center gap-4">
-              <Link href="/consultations">
+              <Link href="/consultation">
                 <button className="px-6 py-2 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300">
                   BOOK A CONSULTATION
                 </button>
               </Link>
             </div>
 
-            {/* Mobile Hamburger Menu Button - Visible only on mobile */}
+            {/* Mobile Hamburger Menu Button */}
             <div className="flex md:hidden items-center">
               <button
                 onClick={() => setIsMobileOpen(!isMobileOpen)}
@@ -162,10 +219,19 @@ const Navbar = () => {
       {/* Mobile Menu Slide-down Panel */}
       <div
         className={`md:hidden bg-white border-b border-[#C9A227]/40 transition-all duration-300 ease-in-out overflow-hidden ${
-          isMobileOpen ? 'max-h-[80vh] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
+          isMobileOpen ? 'max-h-[85vh] opacity-100 visible' : 'max-h-0 opacity-0 invisible'
         }`}
       >
-        <div className="px-6 py-5 space-y-4 font-semibold text-black overflow-y-auto max-h-[calc(80vh-2rem)]">
+        <div className="px-6 py-5 space-y-4 font-semibold text-black overflow-y-auto max-h-[calc(85vh-2rem)]">
+          
+          {/* Mobile User Session Status */}
+          {activeUser && (
+            <div className="bg-gray-50 border border-gray-200 p-3 rounded-xl flex items-center justify-between text-xs">
+              <span className="text-gray-600 truncate">Logged in as: <strong className="text-black">{activeUser.email}</strong></span>
+              <button onClick={handleLogout} className="text-red-600 font-bold hover:underline shrink-0 ml-2">Logout</button>
+            </div>
+          )}
+
           <Link
             href="/home"
             onClick={() => setIsMobileOpen(false)}
@@ -224,7 +290,7 @@ const Navbar = () => {
               <Link
                 href="/graphic-designing"
                 onClick={() => setIsMobileOpen(false)}
-                className="block font-medium text-sm text-gray-700 hover:text-[#C9A227]"
+                className="block font-medium text-sm text-gray-700 hover:text-white"
               >
                 Graphic Designing
               </Link>
@@ -239,12 +305,11 @@ const Navbar = () => {
             Contact
           </Link>
 
-          {/* Divider line before CTA */}
           <div className="border-t border-gray-100 my-2"></div>
 
           {/* Consultation Button for Mobile */}
           <div className="pt-2">
-            <Link href="/consultations" onClick={() => setIsMobileOpen(false)}>
+            <Link href="/consultation" onClick={() => setIsMobileOpen(false)}>
               <button className="w-full px-6 py-2.5 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300 text-center text-sm">
                 BOOK A CONSULTATION
               </button>

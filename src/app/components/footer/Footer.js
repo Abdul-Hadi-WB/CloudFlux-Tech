@@ -14,7 +14,7 @@ const Footer = () => {
     },
     {
       Icon: Twitter,
-      href: "#", // Add Twitter link here if needed
+      href: "#", 
       hoverClass: "hover:bg-[#1DA1F2] hover:text-white"
     },
     {
@@ -24,9 +24,25 @@ const Footer = () => {
     },
     {
       Icon: Linkedin,
-      href: "#", // Add Linkedin link here if needed
+      href: "#", 
       hoverClass: "hover:bg-[#0077B5] hover:text-white"
     }
+  ]
+
+  // Quick Links with their correct routes
+  const quickLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Services', href: '/contact' }, // Ya aap services ka koi main page rakh sakte hain
+    { name: 'Contact', href: '/contact' }
+  ]
+
+  // Services Links with their correct routes
+  const serviceLinks = [
+    { name: 'Web Development', href: '/web-development' },
+    { name: 'Social Media Marketing', href: '/digital-marketing' },
+    { name: 'Video Editing', href: '/video-editing' },
+    { name: 'Graphic Designing', href: '/graphic-designing' }
   ]
 
   return (
@@ -52,8 +68,8 @@ const Footer = () => {
               <Link
                 key={i}
                 href={href}
-                target="_blank" // Opens in a new tab
-                rel="noopener noreferrer" // Security best practice
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`p-2 rounded-full bg-black/10 text-black transition-all duration-300 ${hoverClass}`}
               >
                 <Icon size={18} />
@@ -64,41 +80,36 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg" style={{ color: 'black' }}>Quick Links</h3>
-          {['Home','About','Services','Contact'].map((item,i)=>(
-            <Link key={i} href="#" className="text-black/80 hover:text-black transition duration-300">
-              {item}
+          <h3 className="font-semibold text-lg text-black">Quick Links</h3>
+          {quickLinks.map((item, i) => (
+            <Link key={i} href={item.href} className="text-black/80 hover:text-black transition duration-300">
+              {item.name}
             </Link>
           ))}
         </div>
 
         {/* Services */}
         <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg" style={{ color: 'black' }}>Services</h3>
-          {[
-            'Web Development',
-            'Social Media Marketing',
-            'Video Editing',
-            'Graphic Designing'
-          ].map((item,i)=>(
-            <Link key={i} href="#" className="text-black/80 hover:text-black transition duration-300">
-              {item}
+          <h3 className="font-semibold text-lg text-black">Services</h3>
+          {serviceLinks.map((item, i) => (
+            <Link key={i} href={item.href} className="text-black/80 hover:text-black transition duration-300">
+              {item.name}
             </Link>
           ))}
         </div>
 
         {/* Contact Info */}
         <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg" style={{ color: 'black' }}>Contact</h3>
-          <p className="text-black/80">Email: info@cloudfluxtech.com</p>
+          <h3 className="font-semibold text-lg text-black">Contact</h3>
+          <p className="text-black/80">Email: cloudfluxtech1@gmail.com</p>
           <p className="text-black/80">Phone: +92 300 1234567</p>
-          <p className="text-black/80">Address: 123 Tech Street, Karachi, Pakistan</p>
+          <p className="text-black/80">Address: Model town, Lahore, Pakistan</p>
 
           <Link
-            href="#"
-            className="mt-3 inline-block px-5 py-2.5 rounded-full bg-black text-[#C9A227] font-semibold hover:bg-white hover:text-black transition-all duration-300 shadow-md"
+            href="/contact"
+            className="mt-3 inline-block px-5 py-2.5 rounded-full bg-black text-[#C9A227] font-semibold hover:bg-white hover:text-black transition-all duration-300 shadow-md text-center"
           >
-            Subscribe
+            Get in Touch
           </Link>
         </div>
 

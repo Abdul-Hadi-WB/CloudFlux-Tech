@@ -415,59 +415,69 @@ const DigitalMarketing = () => {
       </motion.section>
       
       {/* 4. Expert Section */}
-      <motion.section 
-        variants={sectionVariant}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        className="w-full py-16 bg-[#FFF8E1]"
-      >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
-          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
-            <div className="flex-shrink-0 flex flex-col items-center -mt-2">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <Image
-                  src="/images/marketing-expert.jpg"
-                  alt="Sarah Khan"
-                  width={96}
-                  height={96}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="font-bold text-white text-base">Sarah Khan</h4>
-                <p className="text-white/80 text-xs">Digital Marketing Strategist</p>
-              </div>
-            </div>
-
-            <div className="text-white flex-1">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">
-                Who you'll be speaking with:
-              </h3>
-              <ul className="space-y-2 mb-5">
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> 4+ Years in SEO & Digital Marketing
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> Expert in Google Ads & Social Media Campaigns
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> Specialized in Data Analytics & Conversion Optimization
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-white">✔</span> 50+ Successful Marketing Campaigns Delivered
-                </li>
-              </ul>
-              <p className="italic text-sm md:text-base leading-relaxed mb-4">
-                “In today's digital world, visibility is everything. My passion is helping businesses cut through the noise and connect with their ideal customers. Whether it's SEO, social media, or paid ads, I create data-driven strategies that deliver real, measurable growth - not just vanity metrics.”
-              </p>
-              <p className="text-sm md:text-base leading-relaxed">
-                At CloudFlux Tech, we don't believe in one-size-fits-all marketing. We take time to understand your unique brand voice, target audience, and business goals. From keyword research to campaign optimization, every decision is backed by data and focused on ROI. Let's turn your digital presence into your biggest asset.
-              </p>
-            </div>
+<motion.section 
+  variants={sectionVariant}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true, margin: "-100px" }}
+  className="w-full py-16 bg-[#FFF8E1]"
+>
+  <div className="max-w-5xl mx-auto px-6 md:px-8">
+    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+      <div className="flex-shrink-0 flex flex-col items-center -mt-2">
+        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+          <Image
+            src="/images/marketing-expert.jpg"
+            alt="Sarah Khan"
+            width={96}
+            height={96}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="mt-3 text-center">
+          <h4 className="font-bold text-white text-base">Sarah Khan</h4>
+          <p className="text-white/80 text-xs">Digital Marketing Strategist</p>
+          
+          {/* Added Contact Number */}
+          <div className="mt-3">
+            <a 
+              href="tel:03116176345" 
+              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+            >
+              📞 0311 6176345
+            </a>
           </div>
         </div>
-      </motion.section>
+      </div>
+
+      <div className="text-white flex-1">
+        <h3 className="text-xl md:text-2xl font-bold mb-4">
+          Who you'll be speaking with:
+        </h3>
+        <ul className="space-y-2 mb-5">
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> 4+ Years in SEO & Digital Marketing
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> Expert in Google Ads & Social Media Campaigns
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> Specialized in Data Analytics & Conversion Optimization
+          </li>
+          <li className="flex items-center gap-2">
+            <span className="text-white">✔</span> 50+ Successful Marketing Campaigns Delivered
+          </li>
+        </ul>
+        <p className="italic text-sm md:text-base leading-relaxed mb-4">
+          “In today's digital world, visibility is everything. My passion is helping businesses cut through the noise and connect with their ideal customers. Whether it's SEO, social media, or paid ads, I create data-driven strategies that deliver real, measurable growth - not just vanity metrics.”
+        </p>
+        <p className="text-sm md:text-base leading-relaxed">
+          At CloudFlux Tech, we don't believe in one-size-fits-all marketing. We take time to understand your unique brand voice, target audience, and business goals. From keyword research to campaign optimization, every decision is backed by data and focused on ROI. Let's turn your digital presence into your biggest asset.
+        </p>
+      </div>
+    </div>
+  </div>
+</motion.section>
       
       {/* 5. Marketing Expertise Section with FIXED Side Image (No white box) */}
       <motion.section 

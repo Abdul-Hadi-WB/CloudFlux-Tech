@@ -1,12 +1,12 @@
 'use client';
 
 import { Canvas, useFrame } from '@react-three/fiber';
-import { useRef, useMemo, useState } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import Link from "next/link";
 import { motion } from 'framer-motion';
 
-// Simple particle system (future use if needed)
+// Simple particle system
 const Particles = () => {
   const particlesRef = useRef();
   const count = 1500;
@@ -59,6 +59,27 @@ const Particles = () => {
 };
 
 const ContactUs = () => {
+  // Active User State for Auth Check
+  const [activeUser, setActiveUser] = useState(null);
+
+  useEffect(() => {
+    const sessionUser = localStorage.getItem('cloudflux_active_user') || sessionStorage.getItem('cloudflux_active_user');
+    if (sessionUser) {
+      try {
+        setActiveUser(JSON.parse(sessionUser));
+      } catch (e) {
+        console.error("Error parsing active user session:", e);
+      }
+    }
+  }, []);
+
+  // Handle Logout from Contact Us page
+  const handleLogout = () => {
+    localStorage.removeItem('cloudflux_active_user');
+    sessionStorage.removeItem('cloudflux_active_user');
+    setActiveUser(null);
+  };
+
   // Project Form States
   const [projectForm, setProjectForm] = useState({
     name: '',
@@ -135,7 +156,7 @@ const ContactUs = () => {
 
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-10 sm:gap-14 lg:gap-16 items-start">
 
-          {/* LEFT SIDE: PROJECT FORM (Slides from Left) */}
+          {/* LEFT SIDE: PROJECT FORM */}
           <motion.div
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -210,7 +231,7 @@ const ContactUs = () => {
             </form>
           </motion.div>
 
-          {/* RIGHT SIDE: AUTH BUTTONS & LARGE IMAGE (Slides from Right) */}
+          {/* RIGHT SIDE: AUTH OR USER PROFILE & IMAGE */}
           <motion.div
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -218,33 +239,55 @@ const ContactUs = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="w-full"
           >
-            <h3 className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6">
-              Join or Access Your Account
-            </h3>
+            {activeUser ? (
+              <div className="bg-gray-50 border border-gray-200 rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 text-center shadow-sm">
+                <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-md">
+                  {activeUser.fullName ? activeUser.fullName.charAt(0).toUpperCase() : 'U'}
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Welcome, {activeUser.fullName}!</h3>
+                <p className="text-xs text-gray-500 mt-1">{activeUser.email}</p>
+                <div className="mt-3 inline-block px-3 py-1 bg-white border border-gray-200 text-gray-800 text-xs font-semibold rounded-full shadow-2xs">
+                  Active Session ({activeUser.role || 'Client'})
+                </div>
+                <div className="mt-5">
+                  <button
+                    onClick={handleLogout}
+                    className="text-xs text-red-600 font-semibold hover:underline bg-white border border-red-200 px-4 py-2 rounded-full shadow-2xs transition"
+                  >
+                    Log Out from Session
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <>
+                <h3 className="text-lg sm:text-xl font-semibold mb-5 sm:mb-6">
+                  Join or Access Your Account
+                </h3>
 
-            {/* SIGN UP & LOGIN BUTTONS */}
-            <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
-              <Link 
-                href="/signup" 
-                className="bg-black text-white text-center py-2.5 sm:py-3 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base"
-              >
-                Sign Up
-              </Link>
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
+                  <Link 
+                    href="/signup" 
+                    className="bg-black text-white text-center py-2.5 sm:py-3 rounded-full font-medium hover:bg-gray-800 transition-all duration-300 text-sm sm:text-base"
+                  >
+                    Sign Up
+                  </Link>
 
-              <Link 
-                href="/login" 
-                className="border border-black text-black text-center py-2.5 sm:py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 text-sm sm:text-base"
-              >
-                Login
-              </Link>
-            </div>
+                  <Link 
+                    href="/login" 
+                    className="border border-black text-black text-center py-2.5 sm:py-3 rounded-full font-medium hover:bg-black hover:text-white transition-all duration-300 text-sm sm:text-base"
+                  >
+                    Login
+                  </Link>
+                </div>
+              </>
+            )}
 
             {/* FULL SIZE IMAGE */}
             <div className="w-full flex justify-center">
               <img
                 src="/images/Contactlogo.png"
                 alt="Fantasy Characters"
-                className="w-full h-auto object-contain mt-6 sm:mt-8 lg:mt-10"
+                className="w-full h-auto object-contain mt-2 sm:mt-4 lg:mt-6"
               />
             </div>
           </motion.div>

@@ -261,58 +261,68 @@ const WebDevelopment = () => {
       </motion.section>
 
       {/* 4. CEO Expert Section (Slides from Right) */}
-      <motion.section 
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full py-16 bg-[#FFF8E1] overflow-hidden"
-      >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
-          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+<motion.section 
+  initial={{ opacity: 0, x: 100 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true, margin: "-100px" }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="w-full py-16 bg-[#FFF8E1] overflow-hidden"
+>
+  <div className="max-w-5xl mx-auto px-6 md:px-8">
+    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
 
-            <div className="flex-shrink-0 flex flex-col items-center -mt-2">
-              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <Image
-                  src="/images/CEO@.jpeg"
-                  alt="Abdul Hadi"
-                  width={96}
-                  height={96}
-                  className="object-cover w-full h-full"
-                  style={{ objectPosition: 'center 30%' }}
-                />
-              </div>
-              <div className="mt-3 text-center">
-                <h4 className="font-bold text-white text-base">Abdul Hadi</h4>
-                <p className="text-white/80 text-xs">CEO - CloudFlux Tech</p>
-                <p className="text-white/60 text-xs mt-1">Senior Web Design Expert</p>
-              </div>
-            </div>
-
-            <div className="text-white flex-1">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">
-                Who you'll be speaking with:
-              </h3>
-
-              <ul className="space-y-2 mb-5">
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> 2+ Years in React & Next.js Development</li>
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> Expert in Node.js & Full Stack Development</li>
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> Specialized in Next.js Architecture & Performance Optimization</li>
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> 20+ Successful Projects for Startups & Small Businesses</li>
-              </ul>
-
-              <p className="italic text-sm md:text-base leading-relaxed mb-4">
-                “I believe every startup deserves a website that works as hard as they do. With Next.js and modern React architecture, we build fast, scalable applications that grow with your business - without burning through your budget. Your vision, our expertise, and technology that delivers results.”
-              </p>
-
-              <p className="text-sm md:text-base leading-relaxed">
-                At CloudFlux Tech, we're not just developers - we're your technical partners. We take the time to understand your business goals, your audience, and your unique challenges. From the first line of code to the final deployment, we ensure your Next.js application is built for performance, SEO, and long-term success. Let's turn your idea into reality.
-              </p>
-            </div>
-
+      <div className="flex-shrink-0 flex flex-col items-center -mt-2">
+        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+          <Image
+            src="/images/CEO@.jpeg"
+            alt="Abdul Hadi"
+            width={96}
+            height={96}
+            className="object-cover w-full h-full"
+            style={{ objectPosition: 'center 30%' }}
+          />
+        </div>
+        <div className="mt-3 text-center">
+          <h4 className="font-bold text-white text-base">Abdul Hadi</h4>
+          <p className="text-white/80 text-xs">CEO - CloudFlux Tech</p>
+          <p className="text-white/60 text-xs mt-1">Senior Web Design Expert</p>
+          
+          {/* Added Direct Phone / WhatsApp Number */}
+          <div className="mt-3">
+            <a 
+              href="tel:03027262793" 
+              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+            >
+              📞 0302 7262793
+            </a>
           </div>
         </div>
-      </motion.section>
+      </div>
+
+      <div className="text-white flex-1">
+        <h3 className="text-xl md:text-2xl font-bold mb-4">
+          Who you'll be speaking with:
+        </h3>
+
+        <ul className="space-y-2 mb-5">
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> 5+ Years in React & Next.js Development</li>
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> Expert in Node.js & Full Stack Development</li>
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> Specialized in Next.js Architecture & Performance Optimization</li>
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> 20+ Successful Projects for Startups & Small Businesses</li>
+        </ul>
+
+        <p className="italic text-sm md:text-base leading-relaxed mb-4">
+          “I believe every startup deserves a website that works as hard as they do. With Next.js and modern React architecture, we build fast, scalable applications that grow with your business - without burning through your budget. Your vision, our expertise, and technology that delivers results.”
+        </p>
+
+        <p className="text-sm md:text-base leading-relaxed">
+          At CloudFlux Tech, we're not just developers - we're your technical partners. We take the time to understand your business goals, your audience, and your unique challenges. From the first line of code to the final deployment, we ensure your Next.js application is built for performance, SEO, and long-term success. Let's turn your idea into reality.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</motion.section>
       
       {/* 5. Next.js Expertise Section (Slides from Left) */}
       <motion.section 
@@ -370,55 +380,65 @@ const WebDevelopment = () => {
       </motion.section>
       
       {/* 6. Tanzeela Waheed Expert Section (Slides from Right) */}
-      <motion.section 
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full py-16 bg-[#FFF8E1] overflow-hidden"
-      >
-        <div className="max-w-5xl mx-auto px-6 md:px-8">
-          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+<motion.section 
+  initial={{ opacity: 0, x: 100 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true, margin: "-100px" }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+  className="w-full py-16 bg-[#FFF8E1] overflow-hidden"
+>
+  <div className="max-w-5xl mx-auto px-6 md:px-8">
+    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
 
-            <div className="flex-shrink-0 flex flex-col items-center">
-              <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md">
-                <Image
-                  src="/images/tanzeela-waheed.jpg"
-                  alt="Tanzeela Waheed"
-                  width={128}
-                  height={128}
-                  className="object-cover w-full h-full"
-                />
-              </div>
-              <div className="mt-4 text-center">
-                <h4 className="font-bold text-white text-lg">Tanzeela Waheed</h4>
-                <p className="text-white/80 text-sm">Senior Web Design Expert</p>
-              </div>
-            </div>
-
-            <div className="text-white flex-1">
-              <h3 className="text-xl md:text-2xl font-bold mb-4">
-                Who you'll be speaking with:
-              </h3>
-
-              <ul className="space-y-2 mb-5">
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> 2+ Years in React & Next.js Development</li>
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> Expert in Modern UI/UX Design Principles</li>
-                <li className="flex items-center gap-2"><span className="text-white">✔</span> Specialized in Performance Optimization & Responsive Design</li>
-              </ul>
-
-              <p className="italic text-sm md:text-base leading-relaxed mb-4">
-                “Great design is not just about how it looks, but how it works. Every pixel, every interaction, every animation should serve a purpose – to create meaningful experiences that users love and remember.”
-              </p>
-
-              <p className="text-sm md:text-base leading-relaxed">
-                As a frontend specialist, I focus on translating your brand vision into seamless digital experiences. From responsive layouts to smooth animations, I ensure your website not only captures attention but also delivers exceptional performance across all devices. Let's build something beautiful together.
-              </p>
-            </div>
-
+      <div className="flex-shrink-0 flex flex-col items-center">
+        <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-md">
+          <Image
+            src="/images/tanzeela-waheed.jpg"
+            alt="Tanzeela Waheed"
+            width={128}
+            height={128}
+            className="object-cover w-full h-full"
+          />
+        </div>
+        <div className="mt-4 text-center">
+          <h4 className="font-bold text-white text-lg">Tanzeela Waheed</h4>
+          <p className="text-white/80 text-sm">Senior Web Design Expert</p>
+          
+          {/* Added Contact Number */}
+          <div className="mt-3">
+            <a 
+              href="tel:03004802356" 
+              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+            >
+              📞 0300 4802356
+            </a>
           </div>
         </div>
-      </motion.section>
+      </div>
+
+      <div className="text-white flex-1">
+        <h3 className="text-xl md:text-2xl font-bold mb-4">
+          Who you'll be speaking with:
+        </h3>
+
+        <ul className="space-y-2 mb-5">
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> 4+ Years in React & Next.js Development</li>
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> Expert in Modern UI/UX Design Principles</li>
+          <li className="flex items-center gap-2"><span className="text-white">✔</span> Specialized in Performance Optimization & Responsive Design</li>
+        </ul>
+
+        <p className="italic text-sm md:text-base leading-relaxed mb-4">
+          “Great design is not just about how it looks, but how it works. Every pixel, every interaction, every animation should serve a purpose – to create meaningful experiences that users love and remember.”
+        </p>
+
+        <p className="text-sm md:text-base leading-relaxed">
+          As a frontend specialist, I focus on translating your brand vision into seamless digital experiences. From responsive layouts to smooth animations, I ensure your website not only captures attention but also delivers exceptional performance across all devices. Let's build something beautiful together.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</motion.section>
 
       {/* 7. Pricing Section (Slides from Left) */}
       <motion.section 
