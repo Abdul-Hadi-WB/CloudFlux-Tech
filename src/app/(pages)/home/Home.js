@@ -1,9 +1,7 @@
 'use client'
-import React, { Suspense, useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
-import * as THREE from 'three'
 import { motion } from 'framer-motion'
 
 // --- 1. Background 3D Particles Component ---
@@ -82,76 +80,6 @@ function Card3D({ children, className = "", sensitivity = 15 }) {
     </div>
   )
 }
-
-// --- 3. Existing 3D Robot Model Component ---
-function Model({ url }) {
-  const { scene, animations } = useGLTF(url)
-  const modelRef = useRef()
-  const mixerRef = useRef()
-  const timeRef = useRef(0)
-
-  useEffect(() => {
-    if (scene) {
-      scene.traverse((child) => {
-        if (child.isMesh) {
-          if (child.material) {
-            if (Array.isArray(child.material)) {
-              child.material.forEach(mat => {
-                mat.color.setHex(0xC0C0C0)
-                mat.roughness = 0.3
-                mat.metalness = 0.9
-                mat.emissive = new THREE.Color(0x222222)
-                mat.emissiveIntensity = 0.1
-              })
-            } else {
-              child.material.color.setHex(0xC0C0C0)
-              child.material.roughness = 0.3
-              child.material.metalness = 0.9
-              child.material.emissive = new THREE.Color(0x222222)
-              child.material.emissiveIntensity = 0.1
-            }
-          }
-        }
-      })
-      
-      if (animations && animations.length > 0) {
-        mixerRef.current = new THREE.AnimationMixer(scene)
-        animations.forEach((clip) => {
-          const action = mixerRef.current.clipAction(clip)
-          action.play()
-        })
-      }
-    }
-    
-    return () => {
-      if (mixerRef.current) {
-        mixerRef.current.stopAllAction()
-        mixerRef.current = null
-      }
-    }
-  }, [scene, animations])
-  
-  useFrame(({ mouse }, delta) => {
-    if (modelRef.current) {
-      timeRef.current += delta * 0.5
-      const targetRotY = timeRef.current
-      const targetRotX = 0
-      const targetRotZ = 0
-      
-      modelRef.current.rotation.y += (targetRotY - modelRef.current.rotation.y) * 0.05
-      modelRef.current.rotation.x += (targetRotX - modelRef.current.rotation.x) * 0.05
-      modelRef.current.rotation.z += (targetRotZ - modelRef.current.rotation.z) * 0.05
-    }
-    
-    if (mixerRef.current) {
-      mixerRef.current.update(delta)
-    }
-  })
-  
-  return <primitive ref={modelRef} object={scene} scale={0.9} position={[0, -1.5, 0]} />
-}
-
-useGLTF.preload('/images/nexbot_by_aximoris_copy_copy.gltf')
 
 // --- Main Page Component ---
 const Home = () => {
@@ -238,7 +166,7 @@ const Home = () => {
               </div>
             </motion.div>
             
-            {/* Right Column - 3D Canvas */}
+            {/* Right Column - Empty Container / Placeholder */}
             <motion.div 
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -247,30 +175,6 @@ const Home = () => {
               className="relative flex justify-center items-center h-[500px] md:h-[550px]"
             >
               <div className="absolute w-64 h-64 bg-[#C9A227]/20 rounded-full blur-3xl animate-pulse"></div>
-              
-              <Canvas 
-                dpr={[1, 2]} 
-                camera={{ fov: 45, position: [0, 0, 8] }} 
-                style={{ touchAction: 'none', background: 'transparent' }}
-              >
-                <Suspense fallback={
-                  <mesh>
-                    <boxGeometry args={[1,1,1]} />
-                    <meshStandardMaterial color="#C9A227" />
-                  </mesh>
-                }>
-                  <Model url="/images/nexbot_by_aximoris_copy_copy.gltf" />
-                </Suspense>
-                
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
-                <directionalLight position={[-5, 5, 0]} intensity={0.8} color="#e0e0e0" />
-                <pointLight position={[0, 3, 2]} intensity={0.6} color="#ffffff" />
-                <pointLight position={[2, 2, 3]} intensity={0.4} color="#a0a0a0" />
-                <pointLight position={[-2, 1, 2]} intensity={0.3} color="#888888" />
-                <directionalLight position={[0, 2, -4]} intensity={0.6} color="#ffffff" />
-                <pointLight position={[0, -2, 0]} intensity={0.3} color="#cccccc" />
-              </Canvas>
             </motion.div>
             
           </div>
@@ -340,7 +244,7 @@ const Home = () => {
         </div>
       </motion.section>
       
-      {/* Awards & Recognition Section (Wrapped with Card3D for Tilt) */}
+      {/* Awards & Recognition Section */}
       <motion.section 
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -412,7 +316,6 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
-            {/* Image Block (With 3D Card Effect) */}
             <motion.div 
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -434,7 +337,6 @@ const Home = () => {
               </Card3D>
             </motion.div>
             
-            {/* Content Block */}
             <motion.div 
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -482,7 +384,6 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             
-            {/* Content Slide from Left */}
             <motion.div 
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -515,7 +416,6 @@ const Home = () => {
               </div>
             </motion.div>
             
-            {/* Image (With 3D Tilt) */}
             <motion.div 
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -588,55 +488,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      
-{/* Digital Marketing Section */}
-      <section className="w-full bg-white py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            
-            <div className="relative flex justify-center items-center order-2 md:order-1">
-              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
-              <div className="relative">
-                <Image
-                  src="/images/image.png"
-                  alt="Digital Marketing"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-md object-contain relative z-10 drop-shadow-xl"
-                />
-              </div>
-            </div>
-            
-            <div className="flex flex-col space-y-6 order-1 md:order-2">
-              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>DIGITAL MARKETING</p>
-              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Drive Real Business Growth with<br/>Strategic Marketing</h2>
-              <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
-                Transform your online presence with our comprehensive digital marketing services from technical SEO and content strategy to paid advertising and social media growth. We help businesses drive traffic, leads & revenue with lasting brand awareness.
-              </p>
-              <div className="pt-2">
-                <span className="text-2xl md:text-3xl font-bold italic text-[#064cbe]">STARTING AT $200</span>
-              </div>
-              <div className="pt-4">
-                <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
-                        style={{ backgroundSize: '200% 100%' }}>
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
-                  <span className="relative z-10 flex items-center">
-                    BOOK A CONSULTATION
-                    <span className="ml-2 text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">⚙️</span>
-                  </span>
-                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
-                  </span>
-                </button>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </section>
-      
-      {/* Testimonials Section */}
+       {/* Testimonials Section */}
       <section className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="text-center mb-20">
@@ -692,7 +544,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
 
     </div>
   )
