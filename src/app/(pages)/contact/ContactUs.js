@@ -5,6 +5,7 @@ import { useRef, useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import Link from "next/link";
 import { motion } from 'framer-motion';
+import { User, LogOut } from 'lucide-react';
 
 // Simple particle system
 const Particles = () => {
@@ -62,15 +63,31 @@ const ContactUs = () => {
   // Active User State for Auth Check
   const [activeUser, setActiveUser] = useState(null);
 
-  useEffect(() => {
+  const checkUserSession = () => {
     const sessionUser = localStorage.getItem('cloudflux_active_user') || sessionStorage.getItem('cloudflux_active_user');
     if (sessionUser) {
       try {
         setActiveUser(JSON.parse(sessionUser));
       } catch (e) {
         console.error("Error parsing active user session:", e);
+        setActiveUser(null);
       }
+    } else {
+      setActiveUser(null);
     }
+  };
+
+  useEffect(() => {
+    checkUserSession();
+
+    // Listen for global auth changes so this section updates instantly without refresh
+    window.addEventListener('authChange', checkUserSession);
+    window.addEventListener('storage', checkUserSession);
+
+    return () => {
+      window.removeEventListener('authChange', checkUserSession);
+      window.removeEventListener('storage', checkUserSession);
+    };
   }, []);
 
   // Handle Logout from Contact Us page
@@ -78,6 +95,9 @@ const ContactUs = () => {
     localStorage.removeItem('cloudflux_active_user');
     sessionStorage.removeItem('cloudflux_active_user');
     setActiveUser(null);
+    
+    // Notify other components (like Navbar) about logout
+    window.dispatchEvent(new Event('authChange'));
   };
 
   // Project Form States
@@ -240,23 +260,21 @@ const ContactUs = () => {
             className="w-full"
           >
             {activeUser ? (
-              <div className="bg-gray-50 border border-gray-200 rounded-3xl p-6 sm:p-8 mb-6 sm:mb-8 text-center shadow-sm">
-                <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4 shadow-md">
-                  {activeUser.fullName ? activeUser.fullName.charAt(0).toUpperCase() : 'U'}
+              <div className="mb-6 sm:mb-8 flex items-center justify-between bg-gray-50 border border-gray-200 px-4 py-3 rounded-full shadow-sm">
+                <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-1.5 bg-black/10 px-3 py-1 rounded-full text-black font-semibold text-xs sm:text-sm">
+                    <User size={14} className="text-black" />
+                    <span className="truncate max-w-[180px] sm:max-w-[220px]">{activeUser.email}</span>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Welcome, {activeUser.fullName}!</h3>
-                <p className="text-xs text-gray-500 mt-1">{activeUser.email}</p>
-                <div className="mt-3 inline-block px-3 py-1 bg-white border border-gray-200 text-gray-800 text-xs font-semibold rounded-full shadow-2xs">
-                  Active Session ({activeUser.role || 'Client'})
-                </div>
-                <div className="mt-5">
-                  <button
-                    onClick={handleLogout}
-                    className="text-xs text-red-600 font-semibold hover:underline bg-white border border-red-200 px-4 py-2 rounded-full shadow-2xs transition"
-                  >
-                    Log Out from Session
-                  </button>
-                </div>
+                <button 
+                  onClick={handleLogout}
+                  title="Logout"
+                  className="flex items-center gap-1 text-xs font-semibold text-red-600 hover:text-red-800 transition duration-200 px-3 py-1 bg-white border border-red-200 rounded-full shadow-2xs"
+                >
+                  <LogOut size={14} />
+                  <span>Exit</span>
+                </button>
               </div>
             ) : (
               <>
