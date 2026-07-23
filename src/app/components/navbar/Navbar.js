@@ -195,7 +195,7 @@ const Navbar = () => {
 
             {/* Desktop Right Side Button */}
             <div className="hidden md:flex items-center gap-4">
-              <Link href="/consultation">
+              <Link href="/consultations">
                 <button className="px-6 py-2 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300">
                   BOOK A CONSULTATION
                 </button>
@@ -309,7 +309,7 @@ const Navbar = () => {
 
           {/* Consultation Button for Mobile */}
           <div className="pt-2">
-            <Link href="/consultation" onClick={() => setIsMobileOpen(false)}>
+            <Link href="/consultations" onClick={() => setIsMobileOpen(false)}>
               <button className="w-full px-6 py-2.5 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300 text-center text-sm">
                 BOOK A CONSULTATION
               </button>
