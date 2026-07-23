@@ -128,7 +128,7 @@ const Navbar = () => {
               </div>
 
               <Link 
-                href="/contact" 
+                href="/contact"
                 className="relative hover:text-[#C9A227] transition duration-300 group"
               >
                 Contact
@@ -138,7 +138,7 @@ const Navbar = () => {
 
             {/* Desktop Right Side Button */}
             <div className="hidden md:flex items-center gap-4">
-              <Link href="/consultation">
+              <Link href="/consultations">
                 <button className="px-6 py-2 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-black hover:text-[#C9A227] transition duration-300">
                   BOOK A CONSULTATION
                 </button>

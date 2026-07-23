@@ -549,6 +549,54 @@ const Home = () => {
             <div className="relative flex justify-center items-center order-2 md:order-1">
               <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
               <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
+              
+              <Card3D className="relative z-10">
+                <Image
+                  src="/images/image.png"
+                  alt="Digital Marketing"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-md object-contain relative z-10 drop-shadow-xl"
+                />
+              </Card3D>
+            </div>
+            
+            <div className="flex flex-col space-y-6 order-1 md:order-2">
+              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>DIGITAL MARKETING</p>
+              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Drive Real Business Growth with<br/>Strategic Marketing</h2>
+              <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
+                Transform your online presence with our comprehensive digital marketing services from technical SEO and content strategy to paid advertising and social media growth. We help businesses drive traffic, leads & revenue with lasting brand awareness.
+              </p>
+              <div className="pt-2">
+                <span className="text-2xl md:text-3xl font-bold italic text-[#064cbe]">STARTING AT $200</span>
+              </div>
+              <div className="pt-4">
+                <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
+                        style={{ backgroundSize: '200% 100%' }}>
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
+                  <span className="relative z-10 flex items-center">
+                    BOOK A CONSULTATION
+                    <span className="ml-2 text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">⚙️</span>
+                  </span>
+                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </section>
+      
+{/* Digital Marketing Section */}
+      <section className="w-full bg-white py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div className="relative flex justify-center items-center order-2 md:order-1">
+              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
               <div className="relative">
                 <Image
                   src="/images/image.png"
@@ -644,6 +692,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
 
     </div>
   )

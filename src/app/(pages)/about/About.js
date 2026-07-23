@@ -6,7 +6,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 
 const About = () => {
   // -------------------------------------------------------------
-  // 3D Perspective Hover Logic (Home Page Style)
+  // 3D Perspective Hover Logic (Hero Section Style)
   // -------------------------------------------------------------
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -35,6 +35,37 @@ const About = () => {
     x.set(0)
     y.set(0)
   }
+
+  // -------------------------------------------------------------
+  // Separate Motion Values for Founder / CEO to avoid hook conflicts
+  // -------------------------------------------------------------
+  const fx = useMotionValue(0)
+  const fy = useMotionValue(0)
+  const fMouseXSpring = useSpring(fx, { stiffness: 150, damping: 15 })
+  const fMouseYSpring = useSpring(fy, { stiffness: 150, damping: 15 })
+  const fRotateX = useTransform(fMouseYSpring, [-0.5, 0.5], ['12deg', '-12deg'])
+  const fRotateY = useTransform(fMouseXSpring, [-0.5, 0.5], ['-12deg', '12deg'])
+
+  const handleFounderMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    fx.set((e.clientX - rect.left) / rect.width - 0.5)
+    fy.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+  const handleFounderMouseLeave = () => { fx.set(0); fy.set(0); }
+
+  const cx = useMotionValue(0)
+  const cy = useMotionValue(0)
+  const cMouseXSpring = useSpring(cx, { stiffness: 150, damping: 15 })
+  const cMouseYSpring = useSpring(cy, { stiffness: 150, damping: 15 })
+  const cRotateX = useTransform(cMouseYSpring, [-0.5, 0.5], ['12deg', '-12deg'])
+  const cRotateY = useTransform(cMouseXSpring, [-0.5, 0.5], ['-12deg', '12deg'])
+
+  const handleCeoMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    cx.set((e.clientX - rect.left) / rect.width - 0.5)
+    cy.set((e.clientY - rect.top) / rect.height - 0.5)
+  }
+  const handleCeoMouseLeave = () => { cx.set(0); cy.set(0); }
 
   return (
     <div className="bg-white min-h-screen relative overflow-hidden">
@@ -69,7 +100,7 @@ const About = () => {
       </div>
 
       {/* ======================================================= */}
-      {/* 1. HERO SECTION (Symmetric Tech Brand Layout)            */}
+      {/* 1. HERO SECTION (Symmetric Tech Brand Layout)           */}
       {/* ======================================================= */}
       <section className="w-full bg-white min-h-screen flex items-center mt-25 relative overflow-hidden">
         {/* Background Premium Decorative Blur Circles */}
@@ -139,7 +170,7 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut" }}
-              className="relative flex justify-center items-center h-[450px] md:h-[500px] perspective-1000"
+              className="relative flex justify-center items-center h-[450px] md:h-[500px]"
               style={{ perspective: 1200 }}
             >
               {/* Interactive 3D Wrapper */}
@@ -159,7 +190,7 @@ const About = () => {
                   style={{ transform: "translateZ(-80px)" }}
                 ></div>
                 
-                <div 
+                <div
                   className="absolute w-80 h-80 border-2 border-[#C9A227]/30 rounded-full transition-transform duration-500 group-hover:border-[#C9A227]/60"
                   style={{ transform: "translateZ(-40px)" }}
                 ></div>
@@ -302,6 +333,140 @@ const About = () => {
       </section>
 
       {/* ======================================================= */}
+      {/* FOUNDER SECTION WITH 3D TILT EFFECT                     */}
+      {/* ======================================================= */}
+      <section className="w-full bg-white py-20 overflow-hidden relative z-10">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <motion.div 
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="flex flex-col space-y-6 order-1"
+            >
+              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>FOUNDER&apos;S VISION</p>
+              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Meet The Mind Behind <br/> CloudFlux Tech</h2>
+              <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
+                Ali Haider, the Founder of CloudFlux Tech, established this venture with a clear vision to redefine digital excellence. His leadership focuses on scaling technical boundaries and fostering top-tier solutions.
+              </p>
+              <div>
+                <span className="text-2xl font-bold italic text-black" style={{ color: '#C9A227' }}>ALI HAIDER - FOUNDER</span>
+              </div>
+            </motion.div>
+            
+            {/* Founder 3D Interactive Container */}
+            <motion.div 
+              initial={{ opacity: 0, x: 70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative flex flex-col items-center justify-center order-2"
+              style={{ perspective: 1200 }}
+            >
+              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+              
+              <motion.div
+                onMouseMove={handleFounderMouseMove}
+                onMouseLeave={handleFounderMouseLeave}
+                style={{
+                  rotateX: fRotateX,
+                  rotateY: fRotateY,
+                  transformStyle: "preserve-3d"
+                }}
+                className="relative z-10 flex flex-col items-center cursor-pointer group"
+              >
+                <motion.div style={{ transform: "translateZ(50px)" }}>
+                  <Image
+                    src="/images/FOUNDER.png"
+                    alt="Founder Ali Haider"
+                    width={420}
+                    height={480}
+                    className="w-full h-auto max-w-sm object-contain drop-shadow-2xl transition-all duration-300 group-hover:drop-shadow-[0_25px_35px_rgba(201,162,39,0.35)]"
+                    priority
+                  />
+                </motion.div>
+                {/* Professional Bottom Line Effect */}
+                <motion.div 
+                  style={{ transform: "translateZ(30px)" }}
+                  className="w-48 h-1.5 bg-gradient-to-r from-transparent via-[#C9A227] to-transparent mt-[-10px] rounded-full shadow-[0_5px_15px_rgba(201,162,39,0.6)]"
+                ></motion.div>
+              </motion.div>
+            </motion.div>
+            
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================= */}
+      {/* CEO SECTION WITH 3D TILT EFFECT                         */}
+      {/* ======================================================= */}
+      <section className="w-full bg-white py-20 overflow-hidden relative z-10 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            {/* CEO 3D Interactive Container */}
+            <motion.div 
+              initial={{ opacity: 0, x: -70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative flex flex-col items-center justify-center order-2 md:order-1"
+              style={{ perspective: 1200 }}
+            >
+              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+              
+              <motion.div
+                onMouseMove={handleCeoMouseMove}
+                onMouseLeave={handleCeoMouseLeave}
+                style={{
+                  rotateX: cRotateX,
+                  rotateY: cRotateY,
+                  transformStyle: "preserve-3d"
+                }}
+                className="relative z-10 flex flex-col items-center cursor-pointer group"
+              >
+                <motion.div style={{ transform: "translateZ(50px)" }}>
+                  <Image
+                    src="/images/CEO1.png"
+                    alt="CEO Abdul Hadi"
+                    width={420}
+                    height={480}
+                    className="w-full h-auto max-w-sm object-contain drop-shadow-2xl transition-all duration-300 group-hover:drop-shadow-[0_25px_35px_rgba(201,162,39,0.35)]"
+                    priority
+                  />
+                </motion.div>
+                {/* Professional Bottom Line Effect */}
+                <motion.div 
+                  style={{ transform: "translateZ(30px)" }}
+                  className="w-48 h-1.5 bg-gradient-to-r from-transparent via-[#C9A227] to-transparent mt-[-10px] rounded-full shadow-[0_5px_15px_rgba(201,162,39,0.6)]"
+                ></motion.div>
+              </motion.div>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 70 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="flex flex-col space-y-6 order-1 md:order-2"
+            >
+              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>CEO'S VISION</p>
+              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Meet The Visionary Behind <br/> CloudFlux Tech</h2>
+              <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
+                Abdul Hadi, the CEO of CloudFlux Tech, leads company operations and development strategies. Under his guidance, the agency delivers cutting-edge tech architectures worldwide.
+              </p>
+              <div>
+                <span className="text-2xl font-bold italic text-black" style={{ color: '#C9A227' }}>ABDUL HADI - CEO</span>
+              </div>
+            </motion.div>
+            
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================= */}
       {/* 3. CORE BENEFITS & SHOWCASE SECTION (Warm-Tint Accent)   */}
       {/* ======================================================= */}
       <section className="w-full bg-white py-24">
@@ -430,7 +595,7 @@ const About = () => {
           </div>
         </div>
       </section>
-
+      
       {/* ======================================================= */}
       {/* 4. ENTERPRISE CONVERSION CALL TO ACTION (CTA)           */}
       {/* ======================================================= */}
@@ -446,7 +611,7 @@ const About = () => {
               Ready to Start Your Project?
             </h2>
             <p className="text-gray-500 text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-              Contact us today and let's discuss how we can engineer tailored workflows to scale your conversion metrics instantly.
+              Contact us today and let&apos;s discuss how we can engineer tailored workflows to scale your conversion metrics instantly.
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2 justify-center">
