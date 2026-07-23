@@ -206,7 +206,7 @@ const Consultation = () => {
                     {/* WhatsApp Submit Action Button */}
                     <button
                       type="submit"
-                      className="bg-black w-full py-3.5 sm:py-4 rounded-xl text-[#C9A227] font-bold text-sm sm:text-base shadow-lg shadow-emerald-600/20 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01]"
+                      className="bg-black w-full py-3.5 sm:py-4 rounded-xl text-[#C9A227] font-bold text-sm sm:text-base shadow-lg transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.01]"
                     >
                       <span>Send Request to WhatsApp</span>
                       <span className="text-xl">→</span>
