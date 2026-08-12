@@ -2,7 +2,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Facebook, Twitter, Instagram, Linkedin } from 'lucide-react'
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from 'lucide-react'
 
 const Footer = () => {
   // Social media configuration with original brand colors
@@ -10,22 +10,30 @@ const Footer = () => {
     {
       Icon: Facebook,
       href: "https://www.facebook.com/CloudFluxTech/",
-      hoverClass: "hover:bg-[#1877F2] hover:text-white"
+      bgColor: "bg-[#1877F2]",
+      hoverBg: "hover:bg-[#1877F2]",
+      label: "Facebook"
     },
     {
       Icon: Twitter,
       href: "#", 
-      hoverClass: "hover:bg-[#1DA1F2] hover:text-white"
+      bgColor: "bg-[#1DA1F2]",
+      hoverBg: "hover:bg-[#1DA1F2]",
+      label: "Twitter"
     },
     {
       Icon: Instagram,
       href: "https://www.instagram.com/cloudflux_tech/",
-      hoverClass: "hover:bg-[#E1306C] hover:text-white"
+      bgColor: "bg-[#E1306C]",
+      hoverBg: "hover:bg-[#E1306C]",
+      label: "Instagram"
     },
     {
       Icon: Linkedin,
       href: "#", 
-      hoverClass: "hover:bg-[#0077B5] hover:text-white"
+      bgColor: "bg-[#0077B5]",
+      hoverBg: "hover:bg-[#0077B5]",
+      label: "LinkedIn"
     }
   ]
 
@@ -33,7 +41,7 @@ const Footer = () => {
   const quickLinks = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Services', href: '/contact' }, // Ya aap services ka koi main page rakh sakte hain
+    { name: 'Services', href: '/contact' },
     { name: 'Contact', href: '/contact' }
   ]
 
@@ -62,15 +70,16 @@ const Footer = () => {
             CloudFlux Tech provides innovative solutions in Web Development, Digital Marketing, Video Editing, and Graphic Designing. Your success is our mission.
           </p>
 
-          {/* Social Icons */}
-          <div className="flex items-center gap-4 mt-2">
-            {socialLinks.map(({ Icon, href, hoverClass }, i) => (
+          {/* Social Icons - Original Colors Always Visible */}
+          <div className="flex items-center gap-3 mt-2">
+            {socialLinks.map(({ Icon, href, bgColor, hoverBg, label }, i) => (
               <Link
                 key={i}
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`p-2 rounded-full bg-black/10 text-black transition-all duration-300 ${hoverClass}`}
+                aria-label={label}
+                className={`p-2.5 rounded-full ${bgColor} text-white transition-all duration-300 hover:scale-110 hover:shadow-lg ${hoverBg} hover:shadow-black/20`}
               >
                 <Icon size={18} />
               </Link>
@@ -79,35 +88,71 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg text-black">Quick Links</h3>
-          {quickLinks.map((item, i) => (
-            <Link key={i} href={item.href} className="text-black/80 hover:text-black transition duration-300">
-              {item.name}
-            </Link>
-          ))}
+        <div className="flex flex-col gap-4">
+          <h3 className="font-semibold text-lg text-black relative inline-block">
+            Quick Links
+            <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-black rounded-full"></span>
+          </h3>
+          <div className="flex flex-col gap-3 pt-1">
+            {quickLinks.map((item, i) => (
+              <Link 
+                key={i} 
+                href={item.href} 
+                className="text-black/70 hover:text-black transition-all duration-300 hover:translate-x-2 relative group"
+              >
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-black rounded-full group-hover:w-3 transition-all duration-300"></span>
+                <span className="pl-0 group-hover:pl-5 transition-all duration-300">{item.name}</span>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Services */}
-        <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg text-black">Services</h3>
-          {serviceLinks.map((item, i) => (
-            <Link key={i} href={item.href} className="text-black/80 hover:text-black transition duration-300">
-              {item.name}
-            </Link>
-          ))}
+        <div className="flex flex-col gap-4">
+          <h3 className="font-semibold text-lg text-black relative inline-block">
+            Services
+            <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-black rounded-full"></span>
+          </h3>
+          <div className="flex flex-col gap-3 pt-1">
+            {serviceLinks.map((item, i) => (
+              <Link 
+                key={i} 
+                href={item.href} 
+                className="text-black/70 hover:text-black transition-all duration-300 hover:translate-x-2 relative group"
+              >
+                <span className="absolute left-0 top-1/2 -translate-y-1/2 w-0 h-0.5 bg-black rounded-full group-hover:w-3 transition-all duration-300"></span>
+                <span className="pl-0 group-hover:pl-5 transition-all duration-300">{item.name}</span>
+              </Link>
+            ))}
+          </div>
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col gap-3">
-          <h3 className="font-semibold text-lg text-black">Contact</h3>
-          <p className="text-black/80">Email: cloudfluxtech1@gmail.com</p>
-          <p className="text-black/80">Phone: +92 300 1234567</p>
-          <p className="text-black/80">Address: Model town, Lahore, Pakistan</p>
+        <div className="flex flex-col gap-4">
+          <h3 className="font-semibold text-lg text-black relative inline-block">
+            Contact
+            <span className="absolute -bottom-1 left-0 w-8 h-0.5 bg-black rounded-full"></span>
+          </h3>
+          <div className="flex flex-col gap-3 pt-1">
+            <div className="flex items-start gap-3 text-black/70 hover:text-black transition-all duration-300 group">
+              <Mail size={18} className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-sm">cloudfluxtech1@gmail.com</span>
+            </div>
+            
+            <div className="flex items-start gap-3 text-black/70 hover:text-black transition-all duration-300 group">
+              <Phone size={18} className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-sm">+92 300 1234567</span>
+            </div>
+            
+            <div className="flex items-start gap-3 text-black/70 hover:text-black transition-all duration-300 group">
+              <MapPin size={18} className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+              <span className="text-sm">Model town, Lahore, Pakistan</span>
+            </div>
+          </div>
 
           <Link
             href="/contact"
-            className="mt-3 inline-block px-5 py-2.5 rounded-full bg-black text-[#C9A227] font-semibold hover:bg-white hover:text-black transition-all duration-300 shadow-md text-center"
+            className="mt-3 inline-block px-6 py-2.5 rounded-full bg-black text-[#C9A227] font-semibold hover:bg-white hover:text-black transition-all duration-300 shadow-md text-center hover:shadow-lg hover:scale-105"
           >
             Get in Touch
           </Link>
@@ -116,9 +161,9 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-12 border-t border-black/20 pt-6 text-center text-black/70 text-sm"> 
+      <div className="mt-12 border-t border-black/20 pt-6 text-center text-black/70 text-sm">
         © {new Date().getFullYear()} 
-        <span className="font-semibold"> CloudFlux Tech</span>. All rights reserved.
+        <span className="font-semibold hover:text-black transition-colors duration-300"> CloudFlux Tech</span>. All rights reserved.
       </div>
     </footer>
   )

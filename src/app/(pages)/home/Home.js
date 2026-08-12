@@ -1,8 +1,23 @@
 'use client'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { 
+  Code, 
+  Palette, 
+  Rocket, 
+  Shield, 
+  Zap, 
+  Globe,
+  ArrowRight,
+  Users,
+  Briefcase,
+  Award,
+  TrendingUp,
+  Clock,
+  CheckCircle
+} from 'lucide-react'
 
 // --- Interactive 3D Tilt Wrapper for Images & Cards ---
 function Card3D({ children, className = "", sensitivity = 15 }) {
@@ -14,7 +29,7 @@ function Card3D({ children, className = "", sensitivity = 15 }) {
     const rect = card.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
-    card.style.transform = `perspective(1000px) rotateX(${-y / sensitivity}deg) rotateY(${x / sensitivity}deg) scale3d(1.03, 1.03, 1.03)`
+    card.style.transform = `perspective(1000px) rotateX(${-y / sensitivity}deg) rotateY(${x / sensitivity}deg) scale3d(1.05, 1.05, 1.05)`
   }
 
   const handleMouseLeave = () => {
@@ -33,6 +48,34 @@ function Card3D({ children, className = "", sensitivity = 15 }) {
     >
       {children}
     </div>
+  )
+}
+
+// --- Flip Card Component - FIXED ---
+function FlipCard({ children, delay = 0 }) {
+  const [isFlipped, setIsFlipped] = useState(false)
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay }}
+      className="h-full w-full"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+    >
+      <div 
+        className="relative w-full h-full transition-all duration-700"
+        style={{ 
+          transformStyle: 'preserve-3d',
+          transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+          minHeight: '280px'
+        }}
+      >
+        {children}
+      </div>
+    </motion.div>
   )
 }
 
@@ -82,7 +125,7 @@ const Home = () => {
               </h1>
 
               <p className="text-xl md:text-xl font-medium text-gray-200 leading-relaxed max-w-lg">
-                Entrust Cloud Flux Tech with your web development, graphic design,
+                Entrust CloudFlux Tech with your web development, graphic design,
                 digital marketing, and SEO projects. We craft sophisticated digital
                 solutions that amplify your brand and drive measurable growth
                 delivering results that matter.
@@ -132,63 +175,212 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section - Flip Cards - FIXED */}
       <motion.section
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
-        className="w-full bg-white py-8 mt-15 mb-15 relative z-10"
+        className="w-full bg-white py-12 md:py-16 relative z-10 overflow-hidden"
       >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
-          <div className="bg-[#FFF8E1] rounded-full shadow-lg p-6 md:p-8 border border-gray-100">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 relative">
-              <div className="hidden md:block absolute left-1/4 top-1/4 bottom-1/4 w-px bg-gray-200"></div>
-              <div className="hidden md:block absolute left-2/4 top-1/4 bottom-1/4 w-px bg-gray-200"></div>
-              <div className="hidden md:block absolute left-3/4 top-1/4 bottom-1/4 w-px bg-gray-200"></div>
-
-              <div className="text-center relative">
-                <div className="flex justify-center mb-2">
-                  <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z" />
-                  </svg>
+          <div className="bg-[#FFF8E1] rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
+            
+            {/* Decorative Background */}
+            <div className="absolute -top-32 -right-32 w-64 h-64 bg-[#C9A227]/5 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-[#C9A227]/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
+              
+              {/* Card 1 - 1+ Years */}
+              <FlipCard delay={0}>
+                {/* Front Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
+                >
+                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Clock className="w-7 h-7 text-[#C9A227]" />
+                      </div>
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
+                      1+
+                    </div>
+                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Years in Business</p>
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
+                  </div>
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-black mb-1">1+</div>
-                <p className="text-sm uppercase font-bold" style={{ color: '#C9A227' }}>Years in Business</p>
-              </div>
 
-              <div className="text-center relative">
-                <div className="absolute -left-4 top-0 bottom-0 w-px bg-gray-200 md:hidden"></div>
-                <div className="flex justify-center mb-2">
-                  <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2h6v2h-6V6zm0 4h6v2h-6v-2zm-6 0h4v2H6v-2zm10 4h-4v-2h4v2zm-10 0h4v2H6v-2z" />
-                  </svg>
+                {/* Back Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)'
+                  }}
+                >
+                  <div className="bg-gradient-to-br from-[#C9A227]/10 to-[#DAA520]/10 rounded-2xl shadow-xl p-6 md:p-8 text-center border border-[#C9A227]/20 w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center mb-4 shadow-lg shadow-[#C9A227]/30">
+                      <TrendingUp className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-black mb-2">Established 2026</h3>
+                    <p className="text-sm text-gray-600">Building trust and delivering excellence since day one.</p>
+                    <div className="mt-3 inline-block px-3 py-1 bg-[#C9A227]/10 rounded-full">
+                      <span className="text-[10px] font-semibold text-[#C9A227] tracking-wider">★ TRUSTED</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-black mb-1">10+</div>
-                <p className="text-sm uppercase font-bold" style={{ color: '#C9A227' }}>Websites Managed</p>
-              </div>
+              </FlipCard>
 
-              <div className="text-center relative">
-                <div className="absolute -left-4 top-0 bottom-0 w-px bg-gray-200 md:hidden"></div>
-                <div className="flex justify-center mb-2">
-                  <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M16.5 6.5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-9 0c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm10.5 5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-9 0c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm11 4.5c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2zm-9 0c0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2 2 .9 2 2z" />
-                  </svg>
+              {/* Card 2 - 10+ Websites */}
+              <FlipCard delay={0.1}>
+                {/* Front Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
+                >
+                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <svg className="w-7 h-7 text-[#C9A227]" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2h6v2h-6V6zm0 4h6v2h-6v-2zm-6 0h4v2H6v-2zm10 4h-4v-2h4v2zm-10 0h4v2H6v-2z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
+                      10+
+                    </div>
+                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Websites Managed</p>
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
+                  </div>
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-black mb-1">20+</div>
-                <p className="text-sm uppercase font-bold" style={{ color: '#C9A227' }}>Reseller Partners</p>
-              </div>
 
-              <div className="text-center relative">
-                <div className="absolute -left-4 top-0 bottom-0 w-px bg-gray-200 md:hidden"></div>
-                <div className="flex justify-center mb-2">
-                  <svg className="w-8 h-8 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-1 .05 1.16.84 2 1.87 2 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
-                  </svg>
+                {/* Back Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)'
+                  }}
+                >
+                  <div className="bg-gradient-to-br from-[#C9A227]/10 to-[#DAA520]/10 rounded-2xl shadow-xl p-6 md:p-8 text-center border border-[#C9A227]/20 w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center mb-4 shadow-lg shadow-[#C9A227]/30">
+                      <CheckCircle className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-black mb-2">Live Projects</h3>
+                    <p className="text-sm text-gray-600">Successfully launched and managing 10+ websites.</p>
+                    <div className="mt-3 inline-block px-3 py-1 bg-[#C9A227]/10 rounded-full">
+                      <span className="text-[10px] font-semibold text-[#C9A227] tracking-wider">✓ ACTIVE</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="text-4xl md:text-5xl font-bold text-black mb-1">15+</div>
-                <p className="text-sm uppercase font-bold" style={{ color: '#C9A227' }}>Employees</p>
-              </div>
+              </FlipCard>
+
+              {/* Card 3 - 20+ Partners */}
+              <FlipCard delay={0.2}>
+                {/* Front Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
+                >
+                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Users className="w-7 h-7 text-[#C9A227]" />
+                      </div>
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
+                      20+
+                    </div>
+                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Reseller Partners</p>
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
+                  </div>
+                </div>
+
+                {/* Back Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)'
+                  }}
+                >
+                  <div className="bg-gradient-to-br from-[#C9A227]/10 to-[#DAA520]/10 rounded-2xl shadow-xl p-6 md:p-8 text-center border border-[#C9A227]/20 w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center mb-4 shadow-lg shadow-[#C9A227]/30">
+                      <Award className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-black mb-2">Global Network</h3>
+                    <p className="text-sm text-gray-600">Trusted by 20+ partners worldwide.</p>
+                    <div className="mt-3 inline-block px-3 py-1 bg-[#C9A227]/10 rounded-full">
+                      <span className="text-[10px] font-semibold text-[#C9A227] tracking-wider">🌍 GLOBAL</span>
+                    </div>
+                  </div>
+                </div>
+              </FlipCard>
+
+              {/* Card 4 - 15+ Employees */}
+              <FlipCard delay={0.3}>
+                {/* Front Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden'
+                  }}
+                >
+                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
+                    <div className="flex justify-center mb-4">
+                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <Briefcase className="w-7 h-7 text-[#C9A227]" />
+                      </div>
+                    </div>
+                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
+                      15+
+                    </div>
+                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Employees</p>
+                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
+                  </div>
+                </div>
+
+                {/* Back Side */}
+                <div 
+                  className="absolute inset-0 w-full h-full"
+                  style={{ 
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                    transform: 'rotateY(180deg)'
+                  }}
+                >
+                  <div className="bg-gradient-to-br from-[#C9A227]/10 to-[#DAA520]/10 rounded-2xl shadow-xl p-6 md:p-8 text-center border border-[#C9A227]/20 w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center mb-4 shadow-lg shadow-[#C9A227]/30">
+                      <Users className="w-7 h-7 text-white" />
+                    </div>
+                    <h3 className="text-lg font-bold text-black mb-2">Expert Team</h3>
+                    <p className="text-sm text-gray-600">15+ dedicated professionals ready to serve you.</p>
+                    <div className="mt-3 inline-block px-3 py-1 bg-[#C9A227]/10 rounded-full">
+                      <span className="text-[10px] font-semibold text-[#C9A227] tracking-wider">⚡ EXPERT</span>
+                    </div>
+                  </div>
+                </div>
+              </FlipCard>
 
             </div>
           </div>
@@ -440,6 +632,148 @@ const Home = () => {
         </div>
       </section>
 
+      {/* =====================================================
+          WHY CHOOSE CLOUDFLUX TECH - Gold & Black Theme
+      ===================================================== */}
+      <section className="bg-white py-10 md:py-16 relative z-10">
+        <div className="container mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
+
+          <div className="mb-10 md:mb-14 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#C9A227] bg-[#C9A227]/10 px-4 py-1.5 rounded-full mb-4">
+                Why Choose Us
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: -10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-bold text-black"
+            >
+              Why Choose{" "}
+              <span className="text-[#C9A227] relative">
+                CloudFlux Tech
+                <span className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] rounded-full"></span>
+              </span>
+              ?
+            </motion.h2>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mt-4 text-base md:text-lg text-gray-600 max-w-2xl mx-auto px-4"
+            >
+              We deliver cutting-edge digital solutions through modern web development, creative design, and data-driven marketing strategies that help businesses thrive in the digital landscape.
+            </motion.p>
+          </div>
+
+          <div className="grid gap-6 md:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: Code,
+                title: "Expert Web Developers",
+                description:
+                  "Our team builds high-performance, custom-coded Next.js applications with modern UI/UX design that are fully responsive and scalable.",
+              },
+              {
+                icon: Palette,
+                title: "Creative Design Studio",
+                description:
+                  "From branding to graphic design, we create visually stunning assets that capture your brand identity and engage your audience.",
+              },
+              {
+                icon: Rocket,
+                title: "Performance Optimized",
+                description:
+                  "We deliver lightning-fast websites and applications optimized for speed, SEO, and user experience to maximize your digital impact.",
+              },
+              {
+                icon: Shield,
+                title: "Secure & Reliable",
+                description:
+                  "All our solutions are built with security best practices and deployed on Vercel for enterprise-grade reliability and global scale.",
+              },
+              {
+                icon: Zap,
+                title: "Modern Tech Stack",
+                description:
+                  "Leveraging Next.js, React, Tailwind CSS, and the latest technologies to build future-proof digital solutions that drive growth.",
+              },
+              {
+                icon: Globe,
+                title: "Global Digital Presence",
+                description:
+                  "We help businesses establish a powerful online presence with strategic marketing, SEO, and content that reaches global audiences.",
+              },
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="group relative rounded-2xl bg-white p-7 shadow-lg transition-all duration-300 hover:-translate-y-3 hover:shadow-2xl overflow-hidden cursor-pointer border border-gray-100/50"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#C9A227]/5 via-[#DAA520]/5 to-transparent"></div>
+                <div className="absolute -top-16 -right-16 h-32 w-32 rounded-full opacity-0 group-hover:opacity-10 transition-all duration-700 group-hover:scale-150 bg-[#C9A227]"></div>
+                <div className="absolute top-0 left-0 w-0 h-1 group-hover:w-full transition-all duration-700 bg-gradient-to-r from-[#C9A227] to-[#DAA520]"></div>
+
+                <div className="relative z-10">
+                  <div className="mb-5 inline-flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-300 group-hover:scale-110 group-hover:rotate-3 bg-gradient-to-br from-[#C9A227]/10 to-[#DAA520]/10 text-[#C9A227] group-hover:bg-gradient-to-br group-hover:from-[#C9A227] group-hover:to-[#DAA520] group-hover:text-white group-hover:shadow-lg group-hover:shadow-[#C9A227]/25">
+                    <item.icon size={26} className="transition-all duration-300 group-hover:scale-110" />
+                  </div>
+                </div>
+
+                <h4 className="relative z-10 mb-2 text-lg font-bold text-black transition-all duration-300 group-hover:text-[#C9A227]">
+                  {item.title}
+                </h4>
+                <p className="relative z-10 text-sm text-gray-600 transition-all duration-300 group-hover:text-gray-700">
+                  {item.description}
+                </p>
+
+                <div className="relative z-10 mt-4 flex items-center gap-1.5 text-sm font-semibold text-[#C9A227] opacity-0 group-hover:opacity-100 transition-all duration-300 group-hover:gap-3">
+                  <span>Learn More</span>
+                  <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
+                </div>
+
+                <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-700 bg-gradient-to-r from-[#C9A227] to-[#DAA520]"></div>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center mt-12"
+          >
+            <Link
+              href="/services"
+              className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-base px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
+            >
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/30 to-transparent"></span>
+              <span className="relative z-10 flex items-center">
+                Explore Our Services
+                <span className="ml-2 text-xl transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">→</span>
+              </span>
+              <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
+              </span>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
       <section className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
@@ -448,7 +782,6 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">What Our Clients Say</h2>
           </div>
           <div className="flex flex-col gap-16">
-            {/* Card 1 */}
             <div className="flex justify-start">
               <div className="bg-white shadow-2xl rounded-3xl p-10 w-full md:w-[70%] relative border border-gray-100">
                 <div className="absolute -top-5 left-8 bg-[#C9A227] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl">“</div>
@@ -463,7 +796,6 @@ const Home = () => {
                 <div className="absolute bottom-5 right-8 text-[#C9A227] text-3xl">”</div>
               </div>
             </div>
-            {/* Card 2 */}
             <div className="flex justify-end">
               <div className="bg-white shadow-2xl rounded-3xl p-10 w-full md:w-[70%] relative border border-gray-100">
                 <div className="absolute -top-5 left-8 bg-[#C9A227] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl">“</div>
@@ -478,7 +810,6 @@ const Home = () => {
                 <div className="absolute bottom-5 right-8 text-[#C9A227] text-3xl">”</div>
               </div>
             </div>
-            {/* Card 3 */}
             <div className="flex justify-start">
               <div className="bg-white shadow-2xl rounded-3xl p-10 w-full md:w-[70%] relative border border-gray-100">
                 <div className="absolute -top-5 left-8 bg-[#C9A227] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl">“</div>
