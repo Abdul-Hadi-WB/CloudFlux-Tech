@@ -134,7 +134,7 @@ const Home = () => {
               <div className="pt-3">
                 <Link
                   href="/consultations"
-                  className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-base px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
+                  className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[rgb(176,140,31)] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-base px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
                   style={{ backgroundSize: '200% 100%' }}
                 >
                   <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
@@ -185,7 +185,7 @@ const Home = () => {
       >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="bg-[#FFF8E1] rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
-            
+          
             {/* Decorative Background */}
             <div className="absolute -top-32 -right-32 w-64 h-64 bg-[#C9A227]/5 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-[#C9A227]/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -645,7 +645,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#C9A227] bg-[#C9A227]/10 px-4 py-1.5 rounded-full mb-4">
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#C9A227] px-4 py-1.5 rounded-full mb-4">
                 Why Choose Us
               </span>
             </motion.div>
