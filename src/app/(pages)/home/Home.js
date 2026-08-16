@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { 
   Code, 
-  Palette, 
+  Palette,
   Rocket, 
   Shield, 
   Zap, 
@@ -16,7 +16,9 @@ import {
   Award,
   TrendingUp,
   Clock,
-  CheckCircle
+  CheckCircle,
+  PenTool,
+  Film
 } from 'lucide-react'
 
 // --- Interactive 3D Tilt Wrapper for Images & Cards ---
@@ -51,7 +53,7 @@ function Card3D({ children, className = "", sensitivity = 15 }) {
   )
 }
 
-// --- Flip Card Component - FIXED ---
+// --- Flip Card Component ---
 function FlipCard({ children, delay = 0 }) {
   const [isFlipped, setIsFlipped] = useState(false)
 
@@ -84,8 +86,8 @@ const Home = () => {
   return (
     <div className="bg-white min-h-screen relative overflow-hidden">
 
-      {/* 1st Hero Section with Video Background */}
-      <section className="w-full min-h-screen flex items-center relative overflow-hidden py-20 z-10">
+      {/* ========== HERO SECTION WITH VIDEO ========== */}
+      <section className="relative w-full min-h-screen flex items-center overflow-hidden py-20 z-10">
         <video
           autoPlay
           loop
@@ -93,10 +95,7 @@ const Home = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source
-            src="/images/PixVerse_V6_Image_Text_540P_Use_the_uploaded_s.mp4"
-            type="video/mp4"
-          />
+          <source src="/images/Banner.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -160,7 +159,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Empty Container / Placeholder */}
+            {/* Right Column - Empty Container */}
             <motion.div
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -175,7 +174,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Stats Section - Flip Cards - FIXED */}
+      {/* ========== STATS SECTION - FLIP CARDS ========== */}
       <motion.section
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -192,9 +191,8 @@ const Home = () => {
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
               
-              {/* Card 1 - 1+ Years */}
+              {/* ---------- CARD 1 ---------- */}
               <FlipCard delay={0}>
-                {/* Front Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -202,22 +200,24 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
-                    <div className="flex justify-center mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Clock className="w-7 h-7 text-[#C9A227]" />
+                  <div 
+                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
+                    style={{ backgroundImage: "url('/images/card1.jpg')" }}
+                  >
+                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="flex justify-center mb-4">
+                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
+                          <Clock className="w-7 h-7 text-[#C9A227]" />
+                        </div>
                       </div>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">1+</div>
+                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Years in Business</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
-                      1+
-                    </div>
-                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Years in Business</p>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
                   </div>
                 </div>
-
-                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -239,9 +239,8 @@ const Home = () => {
                 </div>
               </FlipCard>
 
-              {/* Card 2 - 10+ Websites */}
+              {/* ---------- CARD 2 ---------- */}
               <FlipCard delay={0.1}>
-                {/* Front Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -249,24 +248,26 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
-                    <div className="flex justify-center mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <svg className="w-7 h-7 text-[#C9A227]" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2h6v2h-6V6zm0 4h6v2h-6v-2zm-6 0h4v2H6v-2zm10 4h-4v-2h4v2zm-10 0h4v2H6v-2z"/>
-                        </svg>
+                  <div 
+                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
+                    style={{ backgroundImage: "url('/images/card2.jpg')" }}
+                  >
+                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="flex justify-center mb-4">
+                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
+                          <svg className="w-7 h-7 text-[#C9A227]" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2h6v2h-6V6zm0 4h6v2h-6v-2zm-6 0h4v2H6v-2zm10 4h-4v-2h4v2zm-10 0h4v2H6v-2z"/>
+                          </svg>
+                        </div>
                       </div>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">10+</div>
+                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Websites Managed</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
-                      10+
-                    </div>
-                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Websites Managed</p>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
                   </div>
                 </div>
-
-                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -288,9 +289,8 @@ const Home = () => {
                 </div>
               </FlipCard>
 
-              {/* Card 3 - 20+ Partners */}
+              {/* ---------- CARD 3 ---------- */}
               <FlipCard delay={0.2}>
-                {/* Front Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -298,22 +298,24 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
-                    <div className="flex justify-center mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Users className="w-7 h-7 text-[#C9A227]" />
+                  <div 
+                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
+                    style={{ backgroundImage: "url('/images/card3.jpg')" }}
+                  >
+                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="flex justify-center mb-4">
+                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
+                          <Users className="w-7 h-7 text-[#C9A227]" />
+                        </div>
                       </div>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">20+</div>
+                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Reseller Partners</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
-                      20+
-                    </div>
-                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Reseller Partners</p>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
                   </div>
                 </div>
-
-                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -335,9 +337,8 @@ const Home = () => {
                 </div>
               </FlipCard>
 
-              {/* Card 4 - 15+ Employees */}
+              {/* ---------- CARD 4 ---------- */}
               <FlipCard delay={0.3}>
-                {/* Front Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -345,22 +346,24 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 text-center border border-gray-100 hover:shadow-2xl transition-all duration-300 w-full h-full flex flex-col items-center justify-center group hover:border-[#C9A227]/30">
-                    <div className="flex justify-center mb-4">
-                      <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227]/20 to-[#C9A227]/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                        <Briefcase className="w-7 h-7 text-[#C9A227]" />
+                  <div 
+                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
+                    style={{ backgroundImage: "url('/images/card4.jpg')" }}
+                  >
+                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
+                    <div className="relative z-10 text-center">
+                      <div className="flex justify-center mb-4">
+                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
+                          <Briefcase className="w-7 h-7 text-[#C9A227]" />
+                        </div>
                       </div>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">15+</div>
+                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Employees</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
+                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
                     </div>
-                    <div className="text-4xl md:text-5xl font-bold text-black mb-1 bg-gradient-to-r from-[#C9A227] to-[#DAA520] bg-clip-text text-transparent">
-                      15+
-                    </div>
-                    <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Employees</p>
-                    <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                    <p className="text-xs text-gray-400 mt-2">Hover to flip →</p>
                   </div>
                 </div>
-
-                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -387,7 +390,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* Awards & Recognition Section */}
+      {/* ========== AWARDS & RECOGNITION ========== */}
       <motion.section
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -454,7 +457,7 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* About Us Section */}
+      {/* ========== ABOUT US SECTION ========== */}
       <section className="w-full bg-white py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -522,7 +525,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Website Development Section */}
+      {/* ========== WEBSITE DEVELOPMENT SECTION ========== */}
       <section className="w-full bg-white py-16 overflow-hidden relative z-10">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -571,7 +574,7 @@ const Home = () => {
 
               <Card3D className="relative z-10">
                 <Image
-                  src="/images/Web.png"
+                  src="/images/Developmentimg.png"
                   alt="Website Development"
                   width={500}
                   height={500}
@@ -584,7 +587,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Digital Marketing Section */}
+      {/* ========== DIGITAL MARKETING SECTION ========== */}
       <section className="w-full bg-white py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -595,7 +598,7 @@ const Home = () => {
 
               <Card3D className="relative z-10">
                 <Image
-                  src="/images/image.png"
+                  src="/images/Marketingimg.png"
                   alt="Digital Marketing"
                   width={500}
                   height={500}
@@ -632,9 +635,121 @@ const Home = () => {
         </div>
       </section>
 
-      {/* =====================================================
-          WHY CHOOSE CLOUDFLUX TECH - Gold & Black Theme
-      ===================================================== */}
+      {/* ================================================================
+          GRAPHIC DESIGNING SECTION (Text Left, Image Right)
+      ================================================================ */}
+      <section className="w-full bg-white py-16 overflow-hidden relative z-10">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col space-y-6 order-1"
+            >
+              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>GRAPHIC DESIGNING</p>
+              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Stunning Visuals That<br />Capture Your Brand</h2>
+              <div className="space-y-4 text-gray-600">
+                <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
+                  From logos and branding to social media graphics and marketing collateral, our creative design team transforms your ideas into visually compelling assets. We combine artistic creativity with strategic thinking to deliver designs that resonate with your audience and elevate your brand identity.
+                </p>
+              </div>
+              <div className="pt-2">
+                <span className="text-2xl md:text-2xl font-bold italic text-[#064cbe]">STARTING AT $99</span>
+              </div>
+              <div className="pt-4">
+                <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
+                  style={{ backgroundSize: '200% 100%' }}>
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
+                  <span className="relative z-10 flex items-center">
+                    GET A DESIGN
+                    <span className="ml-2 text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">🎨</span>
+                  </span>
+                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
+                  </span>
+                </button>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative flex justify-center items-center order-2"
+            >
+              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
+
+              <Card3D className="relative z-10">
+                <Image
+                  src="/images/Designingimg.png"
+                  alt="Graphic Designing"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-md object-contain relative z-10 drop-shadow-xl"
+                />
+              </Card3D>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ================================================================
+          VIDEO EDITING SECTION (Image Left, Text Right)
+      ================================================================ */}
+      <section className="w-full bg-white py-16 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+            <div className="relative flex justify-center items-center order-2 md:order-1">
+              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
+
+              <Card3D className="relative z-10">
+                <Image
+                  src="/images/Editingimg.png"
+                  alt="Video Editing"
+                  width={500}
+                  height={500}
+                  className="w-full h-auto max-w-md object-contain relative z-10 drop-shadow-xl"
+                />
+              </Card3D>
+            </div>
+
+            <div className="flex flex-col space-y-6 order-1 md:order-2">
+              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>VIDEO EDITING</p>
+              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Professional Video Content<br />That Tells Your Story</h2>
+              <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
+                From corporate videos and product demos to social media reels and promotional content, our video editing experts craft polished, engaging videos that captivate your audience. We handle everything from color grading and sound design to motion graphics and visual effects.
+              </p>
+              <div className="pt-2">
+                <span className="text-2xl md:text-3xl font-bold italic text-[#064cbe]">STARTING AT $150</span>
+              </div>
+              <div className="pt-4">
+                <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
+                  style={{ backgroundSize: '200% 100%' }}>
+                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
+                  <span className="relative z-10 flex items-center">
+                    GET A VIDEO
+                    <span className="ml-2 text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">🎬</span>
+                  </span>
+                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
+                  </span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ========== WHY CHOOSE CLOUDFLUX TECH ========== */}
       <section className="bg-white py-10 md:py-16 relative z-10">
         <div className="container mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
 
@@ -774,7 +889,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* ========== TESTIMONIALS SECTION ========== */}
       <section className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="text-center mb-20">

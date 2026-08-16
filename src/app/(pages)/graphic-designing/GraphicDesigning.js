@@ -347,71 +347,69 @@ const GraphicDesigning = () => {
         </div>
       </motion.section>
 
-   {/* Expert Section */}
-<motion.section 
-  initial={{ opacity: 0, y: 50 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true, margin: "-100px" }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
-  className="w-full py-16 bg-[#FFF8E1]"
->
-  <div className="max-w-5xl mx-auto px-6 md:px-8">
-    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
-      <div className="flex-shrink-0 flex flex-col items-center -mt-2">
-        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-          <Image
-            src="/images/Founder@.jpeg"
-            alt="Ali"
-            width={96}
-            height={96}
-            className="object-cover w-full h-full"
-          />
-        </div>
-        <div className="mt-3 text-center">
-          <h4 className="font-bold text-white text-base">Ali Haider</h4>
-          <p className="text-white/80 text-xs">Founder - CloudFlux Tech</p>
-          <p className="text-white/60 text-xs mt-1">Senior Graphic Designer & SEO Expert</p>
-          
-          {/* Added Contact Number */}
-          <div className="mt-3">
-            <a 
-              href="tel:03001234567" 
-              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
-            >
-              📞 0300 1234567
-            </a>
+      {/* Expert Section */}
+      <motion.section 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full py-16 bg-[#FFF8E1]"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-8">
+          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+            <div className="flex-shrink-0 flex flex-col items-center -mt-2">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+                <Image
+                  src="/images/Founder@.jpeg"
+                  alt="Ali"
+                  width={96}
+                  height={96}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="mt-3 text-center">
+                <h4 className="font-bold text-white text-base">Ali Haider</h4>
+                <p className="text-white/80 text-xs">Founder - CloudFlux Tech</p>
+                <p className="text-white/60 text-xs mt-1">Senior Graphic Designer & SEO Expert</p>
+                <div className="mt-3">
+                  <a 
+                    href="tel:03001234567" 
+                    className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+                  >
+                    📞 0300 1234567
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-white flex-1">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">
+                Who you'll be speaking with:
+              </h3>
+              <ul className="space-y-2 mb-5">
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> 5+ Years in Graphic & Brand Design
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> Expert in Adobe Creative Suite & Figma
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> Specialized in Brand Identity & Visual Storytelling
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> 150+ Brands Designed & Launched
+                </li>
+              </ul>
+              <p className="italic text-sm md:text-base leading-relaxed mb-4">
+                “Design is more than just aesthetics—it's the silent ambassador of your brand. Every color, font, and shape tells a story.”
+              </p>
+              <p className="text-sm md:text-base leading-relaxed">
+                At CloudFlux Tech, we believe that great branding combined with powerful SEO is the ultimate recipe for business growth. We work hand-in-hand with you to build a visual identity that resonates with your audience and establishes long-term market presence. Let's create something extraordinary together.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="text-white flex-1">
-        <h3 className="text-xl md:text-2xl font-bold mb-4">
-          Who you'll be speaking with:
-        </h3>
-        <ul className="space-y-2 mb-5">
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> 5+ Years in Graphic & Brand Design
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> Expert in Adobe Creative Suite & Figma
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> Specialized in Brand Identity & Visual Storytelling
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> 150+ Brands Designed & Launched
-          </li>
-        </ul>
-        <p className="italic text-sm md:text-base leading-relaxed mb-4">
-          “Design is more than just aesthetics—it's the silent ambassador of your brand. Every color, font, and shape tells a story.”
-        </p>
-        <p className="text-sm md:text-base leading-relaxed">
-          At CloudFlux Tech, we believe that great branding combined with powerful SEO is the ultimate recipe for business growth. We work hand-in-hand with you to build a visual identity that resonates with your audience and establishes long-term market presence. Let's create something extraordinary together.
-        </p>
-      </div>
-    </div>
-  </div>
-</motion.section>
+      </motion.section>
       
       {/* Design Expertise Section */}
       <motion.section 
@@ -467,7 +465,9 @@ const GraphicDesigning = () => {
         </div>
       </motion.section>
 
-      {/* Pricing Section */}
+      {/* ================================================================
+          PRICING SECTION - UPDATED PER PDF
+      ================================================================ */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -475,160 +475,132 @@ const GraphicDesigning = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden"
       >
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#C9A227]/5 to-transparent"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
+        
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 relative z-10">
           <div className="text-center mb-16">
             <p className="text-sm uppercase font-bold tracking-wider mb-3 inline-block px-4 py-1.5 rounded-full bg-[#C9A227]/10" style={{ color: '#C9A227' }}>
               OUR PLANS
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight mt-4">
-              Design package pricing
+              Graphic Designing Pricing
             </h2>
-            <p className="text-xl font-medium text-gray-500 max-w-2xl mx-auto mt-4">
-              Transparent pricing with no hidden fees. Choose the package that best fits your business goals.
+            <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
+              Choose the perfect design package for your business needs. All plans include professional design and source files.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Basic Branding */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between"
-            >
-              <div className="p-8">
+            
+            {/* ---------- BASIC DESIGN ---------- */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">🎨</span>
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-2">Basic Branding</h3>
-                <p className="text-gray-500 mb-6">Essential design assets for startups and new businesses looking to establish their identity.</p>
+                <h3 className="text-2xl font-bold text-black mb-2">Basic Design</h3>
+                <p className="text-gray-500 mb-4">For startups &amp; small businesses</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$349</span>
-                  <span className="text-gray-500"> / project</span>
+                  <span className="text-5xl font-bold text-black">$99</span>
+                  <span className="text-gray-500 text-lg ml-1">/project</span>
                 </div>
-
-                <ul className="space-y-3 border-t border-gray-100 pt-6 mb-8 text-sm text-gray-600">
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Primary Logo Design (2 Concepts)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Color Palette & Typography Guidelines
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> High-Res Vector & PNG Files
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Business Card Design
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> 2 Revisions Included
-                  </li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Primary logo design – 2 concepts</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Color palette</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Typography selection</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">High-resolution PNG &amp; JPG files</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Vector logo files – SVG / PDF</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Business card design</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Social media profile picture</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">2 revision rounds</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Final files delivered in organized formats</span></li>
                 </ul>
-              </div>
-
-              <div className="p-8 pt-0">
+                <div className="text-sm text-gray-400 mb-4 italic">* Custom projects are quoted according to scope, complexity, and turnaround requirements.</div>
                 <button className="w-full py-3 rounded-full border-2 border-[#C9A227] text-black font-semibold hover:bg-[#C9A227] hover:text-white transition-all duration-300">
                   GET STARTED
                 </button>
               </div>
-            </motion.div>
-            
-            {/* Complete Brand Identity */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-xl border-2 border-[#C9A227] overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 relative flex flex-col justify-between"
-            >
-              <div className="absolute top-0 inset-x-0 bg-[#C9A227] text-black text-center py-1.5 text-xs font-bold uppercase tracking-wider">
-                MOST POPULAR
+            </div>
+
+            {/* ---------- COMPLETE BRAND IDENTITY ---------- */}
+            <div className="bg-white rounded-2xl shadow-xl border-2 border-[#C9A227]/30 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col relative">
+              <div className="absolute top-0 inset-x-0 bg-[#C9A227] text-black text-center py-1.5 text-sm font-semibold tracking-wide uppercase">
+                Most Popular
               </div>
-              <div className="p-8 pt-12">
+              <div className="p-8 pt-12 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">✨</span>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Complete Brand Identity</h3>
-                <p className="text-gray-500 mb-6">Comprehensive design solution for businesses wanting a cohesive brand presence.</p>
+                <p className="text-gray-500 mb-4">For businesses wanting a complete professional identity</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$799</span>
-                  <span className="text-gray-500"> / project</span>
+                  <span className="text-5xl font-bold text-black">$249</span>
+                  <span className="text-gray-500 text-lg ml-1">/project</span>
                 </div>
-
-                <ul className="space-y-3 border-t border-gray-100 pt-6 mb-8 text-sm text-gray-600">
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Primary + Secondary Logo Concepts
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Full Brand Style Guide & Rules
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Social Media Kit (Banners & Templates)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Stationery Design (Cards, Letterhead)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Unlimited Revisions
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Full Source Files (AI, PSD, EPS)
-                  </li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Primary + secondary logo concepts</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Complete brand color palette</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Typography system</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Brand style guide</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Logo usage guidelines</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Business card design</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Letterhead design</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Social media profile kit</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Social media post templates</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">High-resolution &amp; vector files</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Source files</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">4 revision rounds</span></li>
                 </ul>
-              </div>
-
-              <div className="p-8 pt-0">
-                <button className="w-full py-3 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-[#B08C1F] transition-all duration-300 shadow-md">
+                <div className="text-sm text-gray-400 mb-4 italic">* Custom projects are quoted according to scope, complexity, and turnaround requirements.</div>
+                <button className="w-full py-3 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-[#B08C1F] transition-all duration-300 shadow-md flex items-center justify-center gap-2 group">
                   CHOOSE PLAN
+                  <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
               </div>
-            </motion.div>
-            
-            {/* Premium Design */}
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between"
-            >
-              <div className="p-8">
+            </div>
+
+            {/* ---------- CUSTOM DESIGN ---------- */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">🚀</span>
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-2">Custom Package</h3>
-                <p className="text-gray-500 mb-6">Tailored creative services for specialized campaigns, print, packaging & ongoing design needs.</p>
+                <h3 className="text-2xl font-bold text-black mb-2">Custom Design</h3>
+                <p className="text-gray-500 mb-4">For advanced &amp; ongoing creative requirements</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">Custom</span>
-                  <span className="text-gray-500"> quote</span>
+                  <span className="text-5xl font-bold text-black">$499</span>
+                  <span className="text-gray-500 text-lg ml-1">+</span>
+                  <span className="text-gray-500 text-sm block mt-1">per project – scope-based pricing</span>
                 </div>
-
-                <ul className="space-y-3 border-t border-gray-100 pt-6 mb-8 text-sm text-gray-600">
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Product Packaging & Labels Design
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Custom Marketing Materials (Brochures, Flyers)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> UI/UX Web & App Layout Graphics
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Priority Turnaround & Dedicated Designer
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="text-[#C9A227] font-bold">✓</span> Monthly Retainer Support Available
-                  </li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Complete custom branding</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Product packaging &amp; label design</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Brochures &amp; flyers</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Posters &amp; marketing materials</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Social media design packages</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">UI/UX graphics</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Presentation / pitch deck design</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Custom illustrations</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Campaign creative design</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Source files</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Priority turnaround</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Dedicated designer</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Ongoing monthly design support available</span></li>
                 </ul>
-              </div>
-
-              <div className="p-8 pt-0">
+                <div className="text-sm text-gray-400 mb-4 italic">* Custom projects are quoted according to scope, complexity, and turnaround requirements.</div>
                 <button className="w-full py-3 rounded-full border-2 border-[#C9A227] text-black font-semibold hover:bg-[#C9A227] hover:text-white transition-all duration-300">
                   CONTACT US
                 </button>
               </div>
-            </motion.div>
+            </div>
+
+          </div>
+          
+          <div className="text-center mt-12">
+            <p className="text-gray-400 text-sm">
+              Need a custom plan? <a href="#" className="text-[#C9A227] font-semibold hover:underline">Book a consultation →</a>
+            </p>
           </div>
         </div>
       </motion.section>

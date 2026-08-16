@@ -334,6 +334,7 @@ const VideoEditing = () => {
                 loop
                 playsInline
                 muted={portfolioMuted}
+
                 preload="auto"
                 className="w-full h-full object-contain"
               />
@@ -513,7 +514,9 @@ const VideoEditing = () => {
         </div>
       </motion.section>
 
-      {/* Video Editing Pricing Section */}
+      {/* ================================================================
+          VIDEO EDITING PRICING SECTION - UPDATED PER PDF
+      ================================================================ */}
       <motion.section 
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -521,13 +524,16 @@ const VideoEditing = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden"
       >
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#C9A227]/5 to-transparent"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
+        
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 relative z-10">
           <div className="text-center mb-16">
             <p className="text-sm uppercase font-bold tracking-wider mb-3 inline-block px-4 py-1.5 rounded-full bg-[#C9A227]/10" style={{ color: '#C9A227' }}>
               OUR PLANS
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight mt-4">
-              Video editing pricing
+              Video Editing Pricing
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
               Choose the perfect video editing package for your content needs. All packages include professional editing and rapid delivery.
@@ -535,105 +541,109 @@ const VideoEditing = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between"
-            >
-              <div className="p-8">
+            
+            {/* ---------- BASIC EDIT ---------- */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">📹</span>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Basic Edit</h3>
-                <p className="text-gray-500 mb-6">For short-form content</p>
+                <p className="text-gray-500 mb-4">For short-form content</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$149</span>
-                  <span className="text-gray-500"> per video</span>
+                  <span className="text-5xl font-bold text-black">$99</span>
+                  <span className="text-gray-500 text-lg ml-1">/video</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Up to 5 minutes footage</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic cuts & transitions</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Audio syncing & mixing</span></li>
-                  <li className="flex items-start gap-2"><span className="text-gray-400 mt-0.5">—</span><span className="text-gray-400">Motion graphics</span></li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Up to 5 minutes raw footage</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic cuts &amp; transitions</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Audio syncing &amp; cleanup</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic color correction</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Background music</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Captions / subtitles</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic text overlays</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">1 revision</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Delivery: 2-3 business days</span></li>
                 </ul>
-              </div>
-              <div className="p-8 pt-0">
+                <div className="text-sm text-gray-400 mb-4 italic">* Final pricing may vary based on raw footage length, final video duration, editing complexity, VFX, animation, and turnaround requirements.</div>
                 <button className="w-full py-3 rounded-full border-2 border-[#C9A227] text-black font-semibold hover:bg-[#C9A227] hover:text-white transition-all duration-300">
                   GET STARTED
                 </button>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-xl border-2 border-[#C9A227]/30 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 relative flex flex-col justify-between"
-            >
-              <div className="absolute top-0 inset-x-0 bg-[#C9A227] text-black text-center py-1.5 text-sm font-semibold tracking-wide">
-                MOST POPULAR
+            </div>
+
+            {/* ---------- PRO EDIT ---------- */}
+            <div className="bg-white rounded-2xl shadow-xl border-2 border-[#C9A227]/30 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col relative">
+              <div className="absolute top-0 inset-x-0 bg-[#C9A227] text-black text-center py-1.5 text-sm font-semibold tracking-wide uppercase">
+                Most Popular
               </div>
-              <div className="p-8 pt-12">
+              <div className="p-8 pt-12 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">🎬</span>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Pro Edit</h3>
-                <p className="text-gray-500 mb-6">For YouTube & social media</p>
+                <p className="text-gray-500 mb-4">For YouTube &amp; social media</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$299</span>
-                  <span className="text-gray-500"> per video</span>
+                  <span className="text-5xl font-bold text-black">$199</span>
+                  <span className="text-gray-500 text-lg ml-1">/video</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Up to 15 minutes footage</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced transitions & effects</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Color grading & correction</span></li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Up to 15 minutes final video</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced cuts &amp; transitions</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Professional color correction &amp; grading</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Audio mixing &amp; cleanup</span></li>
                   <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Custom thumbnails</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic motion graphics</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Captions & subtitles</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Motion graphics</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Animated text</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Captions &amp; subtitles</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">B-roll integration</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Sound effects</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">2-3 revision rounds</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Delivery: 3-5 business days</span></li>
                 </ul>
-              </div>
-              <div className="p-8 pt-0">
+                <div className="text-sm text-gray-400 mb-4 italic">* Final pricing may vary based on raw footage length, final video duration, editing complexity, VFX, animation, and turnaround requirements.</div>
                 <button className="w-full py-3 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-[#B08C1F] transition-all duration-300 shadow-md flex items-center justify-center gap-2 group">
                   LEARN MORE 
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col justify-between"
-            >
-              <div className="p-8">
+            </div>
+
+            {/* ---------- PREMIUM EDIT ---------- */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">🎥</span>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Premium Edit</h3>
-                <p className="text-gray-500 mb-6">For professional projects</p>
+                <p className="text-gray-500 mb-4">For professional &amp; high-end projects</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">Custom</span>
-                  <span className="text-gray-500"> pricing</span>
+                  <span className="text-5xl font-bold text-black">$399</span>
+                  <span className="text-gray-500 text-lg ml-1">+</span>
+                  <span className="text-gray-500 text-sm block mt-1">per video – scope-based pricing</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Unlimited footage length</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced motion graphics & VFX</span></li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Long-form / advanced video editing</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced motion graphics</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Visual effects (VFX)</span></li>
                   <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Professional color grading</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">3D animations & effects</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Sound design & mastering</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced sound design &amp; mastering</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">2D / 3D animations</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Cinematic editing</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Custom graphics &amp; visual effects</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Multi-camera editing</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced captions</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Priority turnaround</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Multiple revision rounds</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Dedicated editor</span></li>
                 </ul>
-              </div>
-              <div className="p-8 pt-0">
+                <div className="text-sm text-gray-400 mb-4 italic">* Final pricing may vary based on raw footage length, final video duration, editing complexity, VFX, animation, and turnaround requirements.</div>
                 <button className="w-full py-3 rounded-full border-2 border-[#C9A227] text-black font-semibold hover:bg-[#C9A227] hover:text-white transition-all duration-300">
                   CONTACT US
                 </button>
               </div>
-            </motion.div>
+            </div>
+
           </div>
           
           <div className="text-center mt-12">

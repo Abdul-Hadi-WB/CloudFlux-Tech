@@ -316,7 +316,7 @@ const DigitalMarketing = () => {
         </div>
       </motion.section>
 
-      {/* 2. PORTFOLIO SECTION (No 3D/Card animation effect on cards as requested) */}
+      {/* 2. PORTFOLIO SECTION */}
       <motion.section 
         variants={sectionVariant}
         initial="hidden"
@@ -415,71 +415,69 @@ const DigitalMarketing = () => {
       </motion.section>
       
       {/* 4. Expert Section */}
-<motion.section 
-  variants={sectionVariant}
-  initial="hidden"
-  whileInView="visible"
-  viewport={{ once: true, margin: "-100px" }}
-  className="w-full py-16 bg-[#FFF8E1]"
->
-  <div className="max-w-5xl mx-auto px-6 md:px-8">
-    <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
-      <div className="flex-shrink-0 flex flex-col items-center -mt-2">
-        <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
-          <Image
-            src="/images/marketing-expert.jpg"
-            alt="Sarah Khan"
-            width={96}
-            height={96}
-            className="object-cover w-full h-full"
-          />
-        </div>
-        <div className="mt-3 text-center">
-          <h4 className="font-bold text-white text-base">Sarah Khan</h4>
-          <p className="text-white/80 text-xs">Digital Marketing Strategist</p>
-          
-          {/* Added Contact Number */}
-          <div className="mt-3">
-            <a 
-              href="tel:03116176345" 
-              className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
-            >
-              📞 0311 6176345
-            </a>
+      <motion.section 
+        variants={sectionVariant}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="w-full py-16 bg-[#FFF8E1]"
+      >
+        <div className="max-w-5xl mx-auto px-6 md:px-8">
+          <div className="bg-gradient-to-r from-[#C9A227] to-[#a1831f] rounded-2xl p-8 md:p-12 flex flex-col md:flex-row items-start gap-8 shadow-lg">
+            <div className="flex-shrink-0 flex flex-col items-center -mt-2">
+              <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
+                <Image
+                  src="/images/marketing-expert.jpg"
+                  alt="Sarah Khan"
+                  width={96}
+                  height={96}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="mt-3 text-center">
+                <h4 className="font-bold text-white text-base">Sarah Khan</h4>
+                <p className="text-white/80 text-xs">Digital Marketing Strategist</p>
+                <div className="mt-3">
+                  <a 
+                    href="tel:03116176345" 
+                    className="inline-block bg-black text-[#C9A227] text-xs font-bold px-3 py-1.5 rounded-full hover:bg-white hover:text-black transition duration-300 shadow-sm"
+                  >
+                    📞 0311 6176345
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="text-white flex-1">
+              <h3 className="text-xl md:text-2xl font-bold mb-4">
+                Who you'll be speaking with:
+              </h3>
+              <ul className="space-y-2 mb-5">
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> 4+ Years in SEO & Digital Marketing
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> Expert in Google Ads & Social Media Campaigns
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> Specialized in Data Analytics & Conversion Optimization
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="text-white">✔</span> 50+ Successful Marketing Campaigns Delivered
+                </li>
+              </ul>
+              <p className="italic text-sm md:text-base leading-relaxed mb-4">
+                “In today's digital world, visibility is everything. My passion is helping businesses cut through the noise and connect with their ideal customers. Whether it's SEO, social media, or paid ads, I create data-driven strategies that deliver real, measurable growth - not just vanity metrics.”
+              </p>
+              <p className="text-sm md:text-base leading-relaxed">
+                At CloudFlux Tech, we don't believe in one-size-fits-all marketing. We take time to understand your unique brand voice, target audience, and business goals. From keyword research to campaign optimization, every decision is backed by data and focused on ROI. Let's turn your digital presence into your biggest asset.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div className="text-white flex-1">
-        <h3 className="text-xl md:text-2xl font-bold mb-4">
-          Who you'll be speaking with:
-        </h3>
-        <ul className="space-y-2 mb-5">
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> 4+ Years in SEO & Digital Marketing
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> Expert in Google Ads & Social Media Campaigns
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> Specialized in Data Analytics & Conversion Optimization
-          </li>
-          <li className="flex items-center gap-2">
-            <span className="text-white">✔</span> 50+ Successful Marketing Campaigns Delivered
-          </li>
-        </ul>
-        <p className="italic text-sm md:text-base leading-relaxed mb-4">
-          “In today's digital world, visibility is everything. My passion is helping businesses cut through the noise and connect with their ideal customers. Whether it's SEO, social media, or paid ads, I create data-driven strategies that deliver real, measurable growth - not just vanity metrics.”
-        </p>
-        <p className="text-sm md:text-base leading-relaxed">
-          At CloudFlux Tech, we don't believe in one-size-fits-all marketing. We take time to understand your unique brand voice, target audience, and business goals. From keyword research to campaign optimization, every decision is backed by data and focused on ROI. Let's turn your digital presence into your biggest asset.
-        </p>
-      </div>
-    </div>
-  </div>
-</motion.section>
+      </motion.section>
       
-      {/* 5. Marketing Expertise Section with FIXED Side Image (No white box) */}
+      {/* 5. Marketing Expertise Section */}
       <motion.section 
         variants={sectionVariant}
         initial="hidden"
@@ -510,7 +508,6 @@ const DigitalMarketing = () => {
               </div>
             </div>
             
-            {/* Side Image - FIXED: No white box, border, or backdrop blur */}
             <div className="relative flex items-center justify-center w-full ml-auto max-w-2xl perspective-1000"> 
               <div className="absolute w-[400px] h-[400px] bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
               <div className="absolute w-[500px] h-[500px] border border-[#C9A227]/20 rounded-full"></div>
@@ -518,14 +515,14 @@ const DigitalMarketing = () => {
               <motion.div 
                 whileHover={{ rotateY: -12, rotateX: 6, scale: 1.03 }}
                 transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                className="relative z-10" // Removed background, padding, border, blur
+                className="relative z-10"
               >
                 <Image
                   src="/images/Marketing.png"
                   alt="Marketing Expertise"
                   width={1200}
                   height={1200}
-                  className="w-full h-auto object-contain relative z-10 drop-shadow-xl" // Kept only shadow
+                  className="w-full h-auto object-contain relative z-10 drop-shadow-xl"
                 />
               </motion.div>
             </div>
@@ -533,7 +530,9 @@ const DigitalMarketing = () => {
         </div>
       </motion.section>
 
-      {/* 6. Pricing Section */}
+      {/* ================================================================
+         6. PRICING SECTION - UPDATED PER PDF
+      ================================================================ */}
       <motion.section 
         variants={sectionVariant}
         initial="hidden"
@@ -541,13 +540,16 @@ const DigitalMarketing = () => {
         viewport={{ once: true, margin: "-100px" }}
         className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden"
       >
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#C9A227]/5 to-transparent"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
+        
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 relative z-10">
           <div className="text-center mb-16">
             <p className="text-sm uppercase font-bold tracking-wider mb-3 inline-block px-4 py-1.5 rounded-full bg-[#C9A227]/10" style={{ color: '#C9A227' }}>
               OUR PLANS
             </p>
             <h2 className="text-4xl md:text-5xl font-bold text-black leading-tight mt-4">
-              Marketing package pricing
+              Digital Marketing Pricing
             </h2>
             <p className="text-gray-500 text-lg max-w-2xl mx-auto mt-4">
               Choose the perfect marketing package for your business goals. All plans include strategy, execution, and regular reporting.
@@ -555,94 +557,117 @@ const DigitalMarketing = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
-            >
-              <div className="p-8">
+            
+            {/* ---------- STARTER MARKETING ---------- */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">📈</span>
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-2">Starter SEO</h3>
-                <p className="text-gray-500 mb-6">For local businesses</p>
+                <h3 className="text-2xl font-bold text-black mb-2">Starter Marketing</h3>
+                <p className="text-gray-500 mb-4">For small &amp; local businesses</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$399</span>
-                  <span className="text-gray-500">/month</span>
+                  <span className="text-5xl font-bold text-black">$99</span>
+                  <span className="text-gray-500 text-lg ml-1">/month</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Keyword research</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">On-page optimization</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Monthly reporting</span></li>
-                  <li className="flex items-start gap-2"><span className="text-gray-400 mt-0.5">—</span><span className="text-gray-400">Link building</span></li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic keyword research</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">On-page SEO</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Google Business Profile optimization</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic social media management</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">8 social media posts/month</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic content creation</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Monthly performance report</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic competitor analysis</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Hashtag &amp; content strategy</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">1 monthly strategy call</span></li>
                 </ul>
+                <div className="text-sm text-gray-400 mb-4 italic">* Ad spend not included — Google/Meta advertising budget is billed separately.</div>
                 <button className="w-full py-3 rounded-full border-2 border-[#C9A227] text-black font-semibold hover:bg-[#C9A227] hover:text-white transition-all duration-300">
                   GET STARTED
                 </button>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-2xl shadow-xl border-2 border-[#C9A227]/30 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 relative"
-            >
-              <div className="absolute top-0 inset-x-0 bg-[#C9A227] text-black text-center py-1.5 text-sm font-semibold tracking-wide">
-                BEST VALUE
+            </div>
+
+            {/* ---------- PRO MARKETING ---------- */}
+            <div className="bg-white rounded-2xl shadow-xl border-2 border-[#C9A227]/30 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col relative">
+              <div className="absolute top-0 inset-x-0 bg-[#C9A227] text-black text-center py-1.5 text-sm font-semibold tracking-wide uppercase">
+                Best Value
               </div>
-              <div className="p-8 pt-12">
+              <div className="p-8 pt-12 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">🚀</span>
                 </div>
                 <h3 className="text-2xl font-bold text-black mb-2">Pro Marketing</h3>
-                <p className="text-gray-500 mb-6">For growing brands</p>
+                <p className="text-gray-500 mb-4">For growing brands</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">$799</span>
-                  <span className="text-gray-500">/month</span>
+                  <span className="text-5xl font-bold text-black">$249</span>
+                  <span className="text-gray-500 text-lg ml-1">/month</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced SEO strategy</span></li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced keyword research</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Complete on-page SEO</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Technical SEO basics</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Local SEO</span></li>
                   <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Social media management</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Content creation</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Monthly analytics report</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Email marketing</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">12-16 posts/month</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Reels / short-form content strategy</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Content writing</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Competitor analysis</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Monthly SEO optimization</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Google Business Profile management</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Monthly analytics &amp; SEO report</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Content calendar</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Basic backlink / link-building strategy</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">2 monthly strategy calls</span></li>
                 </ul>
+                <div className="text-sm text-gray-400 mb-4 italic">* Ad spend not included — Google/Meta advertising budget is billed separately.</div>
                 <button className="w-full py-3 rounded-full bg-[#C9A227] text-black font-semibold hover:bg-[#B08C1F] transition-all duration-300 shadow-md flex items-center justify-center gap-2 group">
                   LEARN MORE 
                   <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </button>
               </div>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
-            >
-              <div className="p-8">
+            </div>
+
+            {/* ---------- ENTERPRISE MARKETING ---------- */}
+            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 flex flex-col">
+              <div className="p-8 flex-1 flex flex-col">
                 <div className="w-16 h-16 bg-[#C9A227]/10 rounded-2xl flex items-center justify-center mb-6">
                   <span className="text-3xl">🏆</span>
                 </div>
-                <h3 className="text-2xl font-bold text-black mb-2">Enterprise</h3>
-                <p className="text-gray-500 mb-6">For large businesses</p>
+                <h3 className="text-2xl font-bold text-black mb-2">Enterprise Marketing</h3>
+                <p className="text-gray-500 mb-4">For established businesses &amp; brands</p>
                 <div className="mb-6">
-                  <span className="text-4xl font-bold text-black">Custom</span>
-                  <span className="text-gray-500"> pricing</span>
+                  <span className="text-5xl font-bold text-black">$499</span>
+                  <span className="text-gray-500 text-lg ml-1">+</span>
+                  <span className="text-gray-500 text-sm block mt-1">final price depends on scope</span>
                 </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Full-service marketing</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">PPC campaign management</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Dedicated account manager</span></li>
-                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Custom strategy & reporting</span></li>
+                <ul className="space-y-3 mb-6 flex-1">
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Full-service digital marketing</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced SEO strategy</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Technical SEO</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Local &amp; national SEO</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Social media management (20+ content pieces/month)</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Reels / short-form content</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Content strategy &amp; copywriting</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Advanced competitor research</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Link-building campaign</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Google Business Profile management</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">PPC / Google Ads management</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Meta Ads management</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Conversion optimization</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Dedicated account management</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Custom monthly strategy</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Detailed analytics &amp; reporting</span></li>
+                  <li className="flex items-start gap-2"><span className="text-[#C9A227] mt-0.5">✓</span><span className="text-gray-600">Weekly strategy / optimization meetings</span></li>
                 </ul>
+                <div className="text-sm text-gray-400 mb-4 italic">* Ad spend not included — Google/Meta advertising budget is billed separately.</div>
                 <button className="w-full py-3 rounded-full border-2 border-[#C9A227] text-black font-semibold hover:bg-[#C9A227] hover:text-white transition-all duration-300">
                   CONTACT US
                 </button>
               </div>
-            </motion.div>
+            </div>
+
           </div>
           
           <div className="text-center mt-12">
