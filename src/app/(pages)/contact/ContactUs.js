@@ -217,9 +217,10 @@ const ContactUs = () => {
                 className="w-full border border-gray-300 rounded-full px-4 sm:px-6 py-2.5 sm:py-3 outline-none hover:border-black focus:border-black focus:ring-1 focus:ring-black transition-all duration-300 text-gray-500 text-sm sm:text-base appearance-none bg-white pr-12 sm:pr-14 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyMHB4IiBoZWlnaHQ9IjIwcHgiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iYmxhY2siPjxwYXRoIGQ9Ik03IDEwbDUgNSA1LTV6Ii8+PC9zdmc+')] bg-no-repeat bg-[center_right_1rem] bg-[length:30px]"
               >
                 <option value="Category" disabled hidden>Category</option>
-                <option value="Game Development">Game Development</option>
-                <option value="Web Development">Web Development</option>
-                <option value="App Development">App Development</option>
+                <option value="Game Development">Web Development</option>
+                <option value="Web Development">Graphic Designing</option>
+                <option value="App Development">Digital Marketing</option>
+                <option value="App Development">Video Editing</option>
               </select>
 
               <input 

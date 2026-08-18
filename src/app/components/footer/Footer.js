@@ -141,7 +141,7 @@ const Footer = () => {
             
             <div className="flex items-start gap-3 text-black/70 hover:text-black transition-all duration-300 group">
               <Phone size={18} className="mt-0.5 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
-              <span className="text-sm">+92 300 1234567</span>
+              <span className="text-sm">+92 311 6176345</span>
             </div>
             
             <div className="flex items-start gap-3 text-black/70 hover:text-black transition-all duration-300 group">
