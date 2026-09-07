@@ -221,7 +221,7 @@ const About = () => {
                   style={{ transform: "translateZ(90px)" }}
                 >
                   <span className="w-3 h-3 rounded-full bg-[#C9A227] animate-ping"></span>
-                  <span className="text-xs font-bold text-black tracking-wide">3D Tech Architecture</span>
+                 
                 </motion.div>
               </motion.div>
 
