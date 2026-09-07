@@ -85,32 +85,19 @@ const Home = () => {
     <div className="bg-white min-h-screen relative overflow-hidden">
 
       {/* =====================================================
-          HERO SECTION - Video Background
+          HERO SECTION - White Background with Space for Image
       ===================================================== */}
-      <section className="w-full min-h-screen flex items-center relative overflow-hidden py-20 z-10">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        >
-          <source
-            src="/images/PixVerse_V6_Image_Text_540P_Use_the_uploaded_s.mp4"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-
-        <div className="absolute inset-0 bg-black/40 z-[1]"></div>
-
-        <div className="absolute top-20 right-0 w-96 h-96 bg-[#C9A227]/10 rounded-full blur-3xl z-[1]"></div>
-        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[#C9A227]/10 rounded-full blur-3xl z-[1]"></div>
+      <section className="w-full min-h-screen flex items-center relative overflow-hidden py-20 z-10 bg-white">
+        {/* Removed video background - now white */}
+        
+        {/* Decorative Elements */}
+        <div className="absolute top-20 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
 
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14 w-full relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
-            {/* Left Column */}
+            {/* Left Column - Content */}
             <motion.div
               initial={{ opacity: 0, x: -100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -122,11 +109,11 @@ const Home = () => {
                 DIGITAL & TECH AGENCY
               </p>
 
-              <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold text-white leading-tight">
+              <h1 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">
                 Power Up Your Digital<br /> Growth With Smart<br /> Technology
               </h1>
 
-              <p className="text-xl md:text-xl font-medium text-gray-200 leading-relaxed max-w-lg">
+              <p className="text-xl md:text-xl font-medium text-gray-600 leading-relaxed max-w-lg">
                 Entrust CloudFlux Tech with your web development, graphic design,
                 digital marketing, and SEO projects. We craft sophisticated digital
                 solutions that amplify your brand and drive measurable growth
@@ -156,13 +143,13 @@ const Home = () => {
                     <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white"></div>
                   ))}
                 </div>
-                <p className="text-sm text-gray-200">
-                  <span className="font-bold text-white">50+</span> Happy Clients
+                <p className="text-sm text-gray-600">
+                  <span className="font-bold text-black">50+</span> Happy Clients
                 </p>
               </div>
             </motion.div>
 
-            {/* Right Column - Empty Container / Placeholder */}
+            {/* Right Column - Space for Image */}
             <motion.div
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -170,7 +157,30 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="relative flex justify-center items-center h-[500px] md:h-[550px]"
             >
-              <div className="absolute w-64 h-64 bg-[#C9A227]/20 rounded-full blur-3xl animate-pulse"></div>
+              {/* Placeholder for Image */}
+              <div className="relative w-full max-w-md h-full flex items-center justify-center">
+                {/* Decorative circles */}
+                <div className="absolute w-80 h-80 border-2 border-[#C9A227]/20 rounded-full"></div>
+                <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute w-96 h-96 border border-[#C9A227]/10 rounded-full"></div>
+                
+                {/* Image will go here */}
+                <div className="relative z-10 w-full h-full flex items-center justify-center">
+                  {/* <Image
+                    src="/images/your-image.png"
+                    alt="Hero Image"
+                    width={500}
+                    height={500}
+                    className="object-contain drop-shadow-2xl"
+                  /> */}
+                  <div className="text-center">
+                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#C9A227]/20 to-[#DAA520]/20 flex items-center justify-center">
+                      <span className="text-6xl">🚀</span>
+                    </div>
+                    <p className="text-sm text-gray-400 mt-4">Your Image Here</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
           </div>
