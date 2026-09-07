@@ -223,7 +223,7 @@ const ContactUs = () => {
                 <option value="App Development">Video Editing</option>
               </select>
 
-              <input 
+              <input
                 type="text" 
                 name="budget"
                 value={projectForm.budget}

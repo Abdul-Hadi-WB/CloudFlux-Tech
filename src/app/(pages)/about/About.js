@@ -429,7 +429,7 @@ const About = () => {
               >
                 <motion.div style={{ transform: "translateZ(50px)" }}>
                   <Image
-                    src="/images/CEO1.png"
+                    src="/images/"
                     alt="CEO Abdul Hadi"
                     width={420}
                     height={480}
@@ -455,10 +455,10 @@ const About = () => {
               <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>CEO'S VISION</p>
               <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Meet The Visionary Behind <br/> CloudFlux Tech</h2>
               <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
-                Abdul Hadi, the CEO of CloudFlux Tech, leads company operations and development strategies. Under his guidance, the agency delivers cutting-edge tech architectures worldwide.
+                Maryam, the CO-Founder of CloudFlux Tech, leads company operations and marketing strategies. Under her guidance, the agency delivers cutting-edge tech architectures worldwide.
               </p>
               <div>
-                <span className="text-2xl font-bold italic text-black" style={{ color: '#C9A227' }}>ABDUL HADI - CEO</span>
+                <span className="text-2xl font-bold italic text-black" style={{ color: '#C9A227' }}>MARYAM - CO FOUNDER</span>
               </div>
             </motion.div>
             

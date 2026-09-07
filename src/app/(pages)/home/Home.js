@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { 
   Code, 
-  Palette,
+  Palette, 
   Rocket, 
   Shield, 
   Zap, 
@@ -16,9 +16,7 @@ import {
   Award,
   TrendingUp,
   Clock,
-  CheckCircle,
-  PenTool,
-  Film
+  CheckCircle
 } from 'lucide-react'
 
 // --- Interactive 3D Tilt Wrapper for Images & Cards ---
@@ -86,8 +84,10 @@ const Home = () => {
   return (
     <div className="bg-white min-h-screen relative overflow-hidden">
 
-      {/* ========== HERO SECTION WITH VIDEO ========== */}
-      <section className="relative w-full min-h-screen flex items-center overflow-hidden py-20 z-10">
+      {/* =====================================================
+          HERO SECTION - Video Background
+      ===================================================== */}
+      <section className="w-full min-h-screen flex items-center relative overflow-hidden py-20 z-10">
         <video
           autoPlay
           loop
@@ -95,7 +95,10 @@ const Home = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover z-0"
         >
-          <source src="/images/Banner.mp4" type="video/mp4" />
+          <source
+            src="/images/PixVerse_V6_Image_Text_540P_Use_the_uploaded_s.mp4"
+            type="video/mp4"
+          />
           Your browser does not support the video tag.
         </video>
 
@@ -133,7 +136,7 @@ const Home = () => {
               <div className="pt-3">
                 <Link
                   href="/consultations"
-                  className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[rgb(176,140,31)] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-base px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
+                  className="group relative inline-flex items-center justify-center overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-base px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
                   style={{ backgroundSize: '200% 100%' }}
                 >
                   <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
@@ -159,7 +162,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Empty Container */}
+            {/* Right Column - Empty Container / Placeholder */}
             <motion.div
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -174,7 +177,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ========== STATS SECTION - FLIP CARDS ========== */}
+      {/* =====================================================
+          STATS SECTION - Flip Cards with Images on Front
+      ===================================================== */}
       <motion.section
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -184,15 +189,16 @@ const Home = () => {
       >
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="bg-[#FFF8E1] rounded-3xl shadow-xl p-8 md:p-12 border border-gray-100 relative overflow-hidden">
-          
+            
             {/* Decorative Background */}
             <div className="absolute -top-32 -right-32 w-64 h-64 bg-[#C9A227]/5 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-[#C9A227]/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 relative z-10">
               
-              {/* ---------- CARD 1 ---------- */}
+              {/* Card 1 - 1+ Years */}
               <FlipCard delay={0}>
+                {/* Front Side - With Image */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -200,24 +206,31 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div 
-                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
-                    style={{ backgroundImage: "url('/images/card1.jpg')" }}
-                  >
-                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
-                    <div className="relative z-10 text-center">
+                  <div className="relative rounded-2xl shadow-xl w-full h-full overflow-hidden">
+                    <Image
+                      src="/images/card1.jpg"
+                      alt="Years in Business"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
                       <div className="flex justify-center mb-4">
-                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
-                          <Clock className="w-7 h-7 text-[#C9A227]" />
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center shadow-lg shadow-[#C9A227]/30">
+                          <Clock className="w-7 h-7 text-white" />
                         </div>
                       </div>
-                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">1+</div>
-                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Years in Business</p>
-                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">
+                        1+
+                      </div>
+                      <p className="text-sm font-semibold text-white/90 uppercase tracking-wide">Years in Business</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-[#DAA520] mx-auto mt-3 rounded-full"></div>
+                      <p className="text-xs text-white/60 mt-2">Hover to flip →</p>
                     </div>
                   </div>
                 </div>
+
+                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -230,7 +243,7 @@ const Home = () => {
                     <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center mb-4 shadow-lg shadow-[#C9A227]/30">
                       <TrendingUp className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-lg font-bold text-black mb-2">Established 2026</h3>
+                    <h3 className="text-lg font-bold text-black mb-2">Established 2025</h3>
                     <p className="text-sm text-gray-600">Building trust and delivering excellence since day one.</p>
                     <div className="mt-3 inline-block px-3 py-1 bg-[#C9A227]/10 rounded-full">
                       <span className="text-[10px] font-semibold text-[#C9A227] tracking-wider">★ TRUSTED</span>
@@ -239,8 +252,9 @@ const Home = () => {
                 </div>
               </FlipCard>
 
-              {/* ---------- CARD 2 ---------- */}
+              {/* Card 2 - 10+ Websites */}
               <FlipCard delay={0.1}>
+                {/* Front Side - With Image */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -248,26 +262,33 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div 
-                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
-                    style={{ backgroundImage: "url('/images/card2.jpg')" }}
-                  >
-                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
-                    <div className="relative z-10 text-center">
+                  <div className="relative rounded-2xl shadow-xl w-full h-full overflow-hidden">
+                    <Image
+                      src="/images/card2.jpg"
+                      alt="Websites Managed"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
                       <div className="flex justify-center mb-4">
-                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
-                          <svg className="w-7 h-7 text-[#C9A227]" fill="currentColor" viewBox="0 0 24 24">
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center shadow-lg shadow-[#C9A227]/30">
+                          <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 2h6v2h-6V6zm0 4h6v2h-6v-2zm-6 0h4v2H6v-2zm10 4h-4v-2h4v2zm-10 0h4v2H6v-2z"/>
                           </svg>
                         </div>
                       </div>
-                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">10+</div>
-                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Websites Managed</p>
-                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">
+                        10+
+                      </div>
+                      <p className="text-sm font-semibold text-white/90 uppercase tracking-wide">Websites Managed</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-[#DAA520] mx-auto mt-3 rounded-full"></div>
+                      <p className="text-xs text-white/60 mt-2">Hover to flip →</p>
                     </div>
                   </div>
                 </div>
+
+                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -289,8 +310,9 @@ const Home = () => {
                 </div>
               </FlipCard>
 
-              {/* ---------- CARD 3 ---------- */}
+              {/* Card 3 - 20+ Partners */}
               <FlipCard delay={0.2}>
+                {/* Front Side - With Image */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -298,24 +320,31 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div 
-                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
-                    style={{ backgroundImage: "url('/images/card3.jpg')" }}
-                  >
-                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
-                    <div className="relative z-10 text-center">
+                  <div className="relative rounded-2xl shadow-xl w-full h-full overflow-hidden">
+                    <Image
+                      src="/images/card3.jpg"
+                      alt="Reseller Partners"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
                       <div className="flex justify-center mb-4">
-                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
-                          <Users className="w-7 h-7 text-[#C9A227]" />
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center shadow-lg shadow-[#C9A227]/30">
+                          <Users className="w-7 h-7 text-white" />
                         </div>
                       </div>
-                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">20+</div>
-                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Reseller Partners</p>
-                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">
+                        20+
+                      </div>
+                      <p className="text-sm font-semibold text-white/90 uppercase tracking-wide">Reseller Partners</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-[#DAA520] mx-auto mt-3 rounded-full"></div>
+                      <p className="text-xs text-white/60 mt-2">Hover to flip →</p>
                     </div>
                   </div>
                 </div>
+
+                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -337,8 +366,9 @@ const Home = () => {
                 </div>
               </FlipCard>
 
-              {/* ---------- CARD 4 ---------- */}
+              {/* Card 4 - 15+ Employees */}
               <FlipCard delay={0.3}>
+                {/* Front Side - With Image */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -346,24 +376,31 @@ const Home = () => {
                     WebkitBackfaceVisibility: 'hidden'
                   }}
                 >
-                  <div 
-                    className="w-full h-full rounded-2xl bg-cover bg-center bg-no-repeat p-6 md:p-8 flex flex-col items-center justify-center relative overflow-hidden"
-                    style={{ backgroundImage: "url('/images/card4.jpg')" }}
-                  >
-                    <div className="absolute inset-0 bg-black/50 rounded-2xl"></div>
-                    <div className="relative z-10 text-center">
+                  <div className="relative rounded-2xl shadow-xl w-full h-full overflow-hidden">
+                    <Image
+                      src="/images/card4.jpg"
+                      alt="Employees"
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
                       <div className="flex justify-center mb-4">
-                        <div className="w-14 h-14 rounded-xl bg-[#C9A227]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 backdrop-blur-sm border border-white/10">
-                          <Briefcase className="w-7 h-7 text-[#C9A227]" />
+                        <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center shadow-lg shadow-[#C9A227]/30">
+                          <Briefcase className="w-7 h-7 text-white" />
                         </div>
                       </div>
-                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">15+</div>
-                      <p className="text-sm font-semibold text-gray-200 uppercase tracking-wide">Employees</p>
-                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-transparent mx-auto mt-3 rounded-full group-hover:w-16 transition-all duration-300"></div>
-                      <p className="text-xs text-gray-300 mt-2">Hover to flip →</p>
+                      <div className="text-4xl md:text-5xl font-bold text-white mb-1">
+                        15+
+                      </div>
+                      <p className="text-sm font-semibold text-white/90 uppercase tracking-wide">Employees</p>
+                      <div className="w-12 h-0.5 bg-gradient-to-r from-[#C9A227] to-[#DAA520] mx-auto mt-3 rounded-full"></div>
+                      <p className="text-xs text-white/60 mt-2">Hover to flip →</p>
                     </div>
                   </div>
                 </div>
+
+                {/* Back Side */}
                 <div 
                   className="absolute inset-0 w-full h-full"
                   style={{ 
@@ -390,7 +427,9 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* ========== AWARDS & RECOGNITION ========== */}
+      {/* =====================================================
+          AWARDS & RECOGNITION SECTION
+      ===================================================== */}
       <motion.section
         initial={{ opacity: 0, x: -100 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -457,7 +496,9 @@ const Home = () => {
         </div>
       </motion.section>
 
-      {/* ========== ABOUT US SECTION ========== */}
+      {/* =====================================================
+          ABOUT US SECTION
+      ===================================================== */}
       <section className="w-full bg-white py-16 relative z-10">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -496,7 +537,7 @@ const Home = () => {
               </h2>
               <div className="space-y-4 text-gray-600">
                 <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
-                  Abdul Hadi (CEO) and Ali Haider (Founder) of CloudFlux Tech established the company
+                  Ali Haider (Founder) and Maryam (Co-Founder) of CloudFlux Tech established the company
                   in Lahore's Arfa Tower. With their combined expertise and a dedicated team of tech
                   professionals, they've spent the past year building CloudFlux Tech and serving
                   clients across the globe. The mission remains the same:
@@ -525,7 +566,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ========== WEBSITE DEVELOPMENT SECTION ========== */}
+      {/* =====================================================
+          WEBSITE DEVELOPMENT SECTION
+      ===================================================== */}
       <section className="w-full bg-white py-16 overflow-hidden relative z-10">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -574,7 +617,7 @@ const Home = () => {
 
               <Card3D className="relative z-10">
                 <Image
-                  src="/images/Developmentimg.png"
+                  src="/images/Web.png"
                   alt="Website Development"
                   width={500}
                   height={500}
@@ -587,7 +630,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ========== DIGITAL MARKETING SECTION ========== */}
+      {/* =====================================================
+          DIGITAL MARKETING SECTION
+      ===================================================== */}
       <section className="w-full bg-white py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -598,7 +643,7 @@ const Home = () => {
 
               <Card3D className="relative z-10">
                 <Image
-                  src="/images/Marketingimg.png"
+                  src="/images/image.png"
                   alt="Digital Marketing"
                   width={500}
                   height={500}
@@ -635,121 +680,9 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================================================================
-          GRAPHIC DESIGNING SECTION (Text Left, Image Right)
-      ================================================================ */}
-      <section className="w-full bg-white py-16 overflow-hidden relative z-10">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-            <motion.div
-              initial={{ opacity: 0, x: -100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="flex flex-col space-y-6 order-1"
-            >
-              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>GRAPHIC DESIGNING</p>
-              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Stunning Visuals That<br />Capture Your Brand</h2>
-              <div className="space-y-4 text-gray-600">
-                <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
-                  From logos and branding to social media graphics and marketing collateral, our creative design team transforms your ideas into visually compelling assets. We combine artistic creativity with strategic thinking to deliver designs that resonate with your audience and elevate your brand identity.
-                </p>
-              </div>
-              <div className="pt-2">
-                <span className="text-2xl md:text-2xl font-bold italic text-[#064cbe]">STARTING AT $99</span>
-              </div>
-              <div className="pt-4">
-                <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
-                  style={{ backgroundSize: '200% 100%' }}>
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
-                  <span className="relative z-10 flex items-center">
-                    GET A DESIGN
-                    <span className="ml-2 text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">🎨</span>
-                  </span>
-                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
-                  </span>
-                </button>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 100 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative flex justify-center items-center order-2"
-            >
-              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
-
-              <Card3D className="relative z-10">
-                <Image
-                  src="/images/Designingimg.png"
-                  alt="Graphic Designing"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-md object-contain relative z-10 drop-shadow-xl"
-                />
-              </Card3D>
-            </motion.div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ================================================================
-          VIDEO EDITING SECTION (Image Left, Text Right)
-      ================================================================ */}
-      <section className="w-full bg-white py-16 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-
-            <div className="relative flex justify-center items-center order-2 md:order-1">
-              <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
-              <div className="absolute w-80 h-80 border border-[#C9A227]/20 rounded-full"></div>
-
-              <Card3D className="relative z-10">
-                <Image
-                  src="/images/Editingimg.png"
-                  alt="Video Editing"
-                  width={500}
-                  height={500}
-                  className="w-full h-auto max-w-md object-contain relative z-10 drop-shadow-xl"
-                />
-              </Card3D>
-            </div>
-
-            <div className="flex flex-col space-y-6 order-1 md:order-2">
-              <p className="text-sm uppercase font-bold tracking-wider" style={{ color: '#C9A227' }}>VIDEO EDITING</p>
-              <h2 className="text-3xl md:text-3xl lg:text-4xl font-bold text-black leading-tight">Professional Video Content<br />That Tells Your Story</h2>
-              <p className="text-xl md:text-xl font-medium text-gray-500 leading-relaxed max-w-lg">
-                From corporate videos and product demos to social media reels and promotional content, our video editing experts craft polished, engaging videos that captivate your audience. We handle everything from color grading and sound design to motion graphics and visual effects.
-              </p>
-              <div className="pt-2">
-                <span className="text-2xl md:text-3xl font-bold italic text-[#064cbe]">STARTING AT $150</span>
-              </div>
-              <div className="pt-4">
-                <button className="group relative overflow-hidden bg-gradient-to-r from-[#C9A227] via-[#DAA520] to-[#C9A227] bg-[length:200%_100] hover:from-[#B08C1F] hover:via-[#C9A227] hover:to-[#B08C1F] text-black font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg hover:shadow-xl transition-all duration-500 hover:scale-105 border border-white/40"
-                  style={{ backgroundSize: '200% 100%' }}>
-                  <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/40 to-transparent"></span>
-                  <span className="relative z-10 flex items-center">
-                    GET A VIDEO
-                    <span className="ml-2 text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:rotate-12">🎬</span>
-                  </span>
-                  <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <span className="absolute inset-0 rounded-full animate-ping bg-[#C9A227]/30"></span>
-                  </span>
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ========== WHY CHOOSE CLOUDFLUX TECH ========== */}
+      {/* =====================================================
+          WHY CHOOSE CLOUDFLUX TECH
+      ===================================================== */}
       <section className="bg-white py-10 md:py-16 relative z-10">
         <div className="container mx-auto max-w-7xl px-4 sm:px-5 lg:px-8">
 
@@ -760,7 +693,7 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#C9A227] px-4 py-1.5 rounded-full mb-4">
+              <span className="inline-block text-xs font-bold uppercase tracking-wider text-[#C9A227] bg-[#C9A227]/10 px-4 py-1.5 rounded-full mb-4">
                 Why Choose Us
               </span>
             </motion.div>
@@ -889,56 +822,122 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ========== TESTIMONIALS SECTION ========== */}
-      <section className="w-full bg-[#FFF8E1] py-24 relative overflow-hidden">
+      {/* =====================================================
+          TESTIMONIALS SECTION
+      ===================================================== */}
+      <section className="w-full py-24 relative overflow-hidden bg-[#FFF8E1]">
         <div className="max-w-7xl mx-auto px-5 md:px-10 lg:px-14">
-          <div className="text-center mb-20">
-            <p className="text-sm font-bold uppercase tracking-wider" style={{ color: '#C9A227' }}>CLIENT TESTIMONIALS</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">What Our Clients Say</h2>
-          </div>
-          <div className="flex flex-col gap-16">
-            <div className="flex justify-start">
-              <div className="bg-white shadow-2xl rounded-3xl p-10 w-full md:w-[70%] relative border border-gray-100">
-                <div className="absolute -top-5 left-8 bg-[#C9A227] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl">“</div>
-                <div className="flex items-start gap-6">
-                  <img src="/images/passport-photo-man-welldressed-caucasian-businessman-suit-tie-smiling-id-portrait_817921-61256.jpg" className="w-20 h-20 rounded-full object-cover" />
-                  <div>
-                    <h4 className="font-bold text-xl text-black">John Anderson</h4>
-                    <p className="text-sm font-semibold" style={{ color: '#C9A227' }}>Anderson Enterprises</p>
-                    <p className="text-gray-600 mt-3 text-lg">CloudFlux Tech completely revolutionized our digital strategy. Their team built us a cutting-edge website that perfectly represents our brand.</p>
-                  </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center">
+            
+            {/* Left Side - Sticker/Image */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-1 flex justify-center lg:justify-start"
+            >
+              <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
+                <div className="absolute -inset-4 bg-[#C9A227]/20 rounded-full blur-2xl animate-pulse"></div>
+                <div className="relative w-full h-full rounded-2xl overflow-hidden border-4 border-[#C9A227] shadow-2xl shadow-[#C9A227]/30">
+                  <Image
+                    src="/images/ChatGPT Image Aug 12, 2026, 10_29_42 PM.png"
+                    alt="Testimonials"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <div className="absolute bottom-5 right-8 text-[#C9A227] text-3xl">”</div>
+                <div className="absolute -bottom-3 -right-3 bg-[#C9A227] text-white text-xs font-bold px-4 py-2 rounded-full shadow-lg shadow-[#C9A227]/40">
+                  ★ 5.0
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Side - Testimonials Content */}
+            <div className="lg:col-span-4">
+              <div className="text-center lg:text-left mb-10">
+                <p className="text-sm font-bold uppercase tracking-wider text-[#C9A227]">
+                  CLIENT TESTIMONIALS
+                </p>
+                <h2 className="text-3xl md:text-4xl font-bold text-black mt-2">What Our Clients Say</h2>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {/* Card 1 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-white shadow-xl rounded-2xl p-6 w-full relative border border-gray-100 hover:shadow-[#C9A227]/20 transition-all duration-500 hover:-translate-y-1">
+                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">“</div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                        JA
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-black">John Anderson</h4>
+                        <p className="text-sm font-semibold" style={{ color: '#C9A227' }}>Anderson Enterprises</p>
+                        <p className="text-gray-600 mt-2 text-sm leading-relaxed">CloudFlux Tech completely revolutionized our digital strategy. Their team built us a cutting-edge website that perfectly represents our brand.</p>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">”</div>
+                  </div>
+                </motion.div>
+
+                {/* Card 2 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="flex justify-end"
+                >
+                  <div className="bg-white shadow-xl rounded-2xl p-6 w-full md:w-[95%] relative border border-gray-100 hover:shadow-[#C9A227]/20 transition-all duration-500 hover:-translate-y-1">
+                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">“</div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                        DM
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-black">Dan Marks</h4>
+                        <p className="text-sm font-semibold" style={{ color: '#C9A227' }}>DP Wealth Advisory</p>
+                        <p className="text-gray-600 mt-2 text-sm leading-relaxed">CloudFlux Tech has been instrumental in growing our digital footprint. Their team understood our unique needs and delivered excellence.</p>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">”</div>
+                  </div>
+                </motion.div>
+
+                {/* Card 3 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="flex justify-start"
+                >
+                  <div className="bg-white shadow-xl rounded-2xl p-6 w-full relative border border-gray-100 hover:shadow-[#C9A227]/20 transition-all duration-500 hover:-translate-y-1">
+                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">“</div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
+                        KL
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-black">Kevin LaPorte</h4>
+                        <p className="text-sm font-semibold" style={{ color: '#C9A227' }}>LaPorte Media</p>
+                        <p className="text-gray-600 mt-2 text-sm leading-relaxed">Incredible experience working with CloudFlux Tech. Their technical skills and marketing strategies exceeded our expectations.</p>
+                      </div>
+                    </div>
+                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">”</div>
+                  </div>
+                </motion.div>
               </div>
             </div>
-            <div className="flex justify-end">
-              <div className="bg-white shadow-2xl rounded-3xl p-10 w-full md:w-[70%] relative border border-gray-100">
-                <div className="absolute -top-5 left-8 bg-[#C9A227] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl">“</div>
-                <div className="flex items-start gap-6">
-                  <img src="/images/dp-wealth-advisory-dan-marks-900px.jpg" className="w-20 h-20 rounded-full object-cover" />
-                  <div>
-                    <h4 className="font-bold text-xl text-black">Dan Marks</h4>
-                    <p className="text-sm font-semibold" style={{ color: '#C9A227' }}>DP Wealth Advisory</p>
-                    <p className="text-gray-600 mt-3 text-lg">CloudFlux Tech has been instrumental in growing our digital footprint. Their team understood our unique needs and delivered excellence.</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-5 right-8 text-[#C9A227] text-3xl">”</div>
-              </div>
-            </div>
-            <div className="flex justify-start">
-              <div className="bg-white shadow-2xl rounded-3xl p-10 w-full md:w-[70%] relative border border-gray-100">
-                <div className="absolute -top-5 left-8 bg-[#C9A227] text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl">“</div>
-                <div className="flex items-start gap-6">
-                  <img src="/images/Kevin-LaPorte.jpg" className="w-20 h-20 rounded-full object-cover" />
-                  <div>
-                    <h4 className="font-bold text-xl text-black">Kevin LaPorte</h4>
-                    <p className="text-sm font-semibold" style={{ color: '#C9A227' }}>LaPorte Media</p>
-                    <p className="text-gray-600 mt-3 text-lg">Incredible experience working with CloudFlux Tech. Their technical skills and marketing strategies exceeded our expectations.</p>
-                  </div>
-                </div>
-                <div className="absolute bottom-5 right-8 text-[#C9A227] text-3xl">”</div>
-              </div>
-            </div>
+
           </div>
         </div>
       </section>

@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const Consultation = () => {
-  // State to switch between CEO (Abdul Hadi) and Founder (Ali Haider)
-  const [activeTab, setActiveTab] = useState('ceo') // 'ceo' or 'founder'
+  // ✅ Founder tab open by default
+  const [activeTab, setActiveTab] = useState('founder') // 'founder' or 'cofounder'
 
   // Form input states
   const [clientName, setClientName] = useState('')
@@ -15,19 +15,19 @@ const Consultation = () => {
 
   // Team Member Data with Updated WhatsApp Numbers
   const teamData = {
-    ceo: {
-      name: 'Abdul Hadi',
-      role: 'Chief Executive Officer',
-      whatsapp: '923027262793',
-      image: '/images/CEO1.png',
-      desc: 'Expert in technical strategy, software architectures, and scaling digital enterprises globally.'
-    },
     founder: {
       name: 'Ali Haider',
-      role: 'Founder & Visionary',
+      role: 'Founder & CEO',
       whatsapp: '923116176345',
       image: '/images/FOUNDER.png',
       desc: 'Focused on brand positioning, high-end creative direction, and expanding strategic business avenues.'
+    },
+    cofounder: {
+      name: 'Maryam',
+      role: 'CO-Founder',
+      whatsapp: '923116176345',
+      image: '/images/',
+      desc: 'Expert in marketing strategy, software architectures, and scaling digital enterprises globally.'
     }
   }
 
@@ -72,19 +72,8 @@ const Consultation = () => {
             </p>
           </div>
 
-          {/* SWITCH BUTTONS BAR */}
+          {/* ✅ FIXED: Founder button first, then Co-Founder */}
           <div className="bg-gray-100 p-2 sm:p-3 flex flex-row gap-2 sm:gap-3 border-b border-gray-200">
-            <button
-              onClick={() => setActiveTab('ceo')}
-              className={`flex-1 py-3 px-3 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm md:text-base transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 ${
-                activeTab === 'ceo'
-                  ? 'bg-black text-[#C9A227] shadow-lg scale-[1.02]'
-                  : 'text-gray-600 hover:text-black hover:bg-gray-200/60'
-              }`}
-            >
-              <span>Abdul Hadi</span> <span className="text-[10px] sm:text-xs opacity-75 font-normal">(CEO)</span>
-            </button>
-            
             <button
               onClick={() => setActiveTab('founder')}
               className={`flex-1 py-3 px-3 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm md:text-base transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 ${
@@ -93,7 +82,18 @@ const Consultation = () => {
                   : 'text-gray-600 hover:text-black hover:bg-gray-200/60'
               }`}
             >
-              <span>Ali Haider</span> <span className="text-[10px] sm:text-xs opacity-75 font-normal">(Founder)</span>
+              <span>Ali Haider</span> <span className="text-[10px] sm:text-xs opacity-75 font-normal">(Founder & CEO)</span>
+            </button>
+            
+            <button
+              onClick={() => setActiveTab('cofounder')}
+              className={`flex-1 py-3 px-3 sm:px-6 rounded-xl sm:rounded-2xl font-bold text-xs sm:text-sm md:text-base transition-all duration-300 flex items-center justify-center gap-1.5 sm:gap-2 ${
+                activeTab === 'cofounder'
+                  ? 'bg-black text-[#C9A227] shadow-lg scale-[1.02]'
+                  : 'text-gray-600 hover:text-black hover:bg-gray-200/60'
+              }`}
+            >
+              <span>Maryam</span> <span className="text-[10px] sm:text-xs opacity-75 font-normal">(Co-Founder)</span>
             </button>
           </div>
 

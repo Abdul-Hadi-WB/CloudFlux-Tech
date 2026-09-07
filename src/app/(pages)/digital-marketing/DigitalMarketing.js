@@ -428,15 +428,16 @@ const DigitalMarketing = () => {
               <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md">
                 <Image
                   src="/images/marketing-expert.jpg"
-                  alt="Sarah Khan"
+                  alt="Maryam"
                   width={96}
                   height={96}
                   className="object-cover w-full h-full"
                 />
               </div>
               <div className="mt-3 text-center">
-                <h4 className="font-bold text-white text-base">Sarah Khan</h4>
-                <p className="text-white/80 text-xs">Digital Marketing Strategist</p>
+                <h4 className="font-bold text-white text-base">Maryam</h4>
+                <p className="text-white/80 text-xs">Co-Founder of Cloudflux Tech</p>
+                        <p className="text-white/60 text-xs mt-1">Digital Marketing Strategist</p>
                 <div className="mt-3">
                   <a 
                     href="tel:03116176345" 

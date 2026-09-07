@@ -473,8 +473,8 @@ const WebDevelopment = () => {
               </div>
               <div className="mt-3 text-center">
                 <h4 className="font-bold text-white text-base">Abdul Hadi</h4>
-                <p className="text-white/80 text-xs">CEO - CloudFlux Tech</p>
-                <p className="text-white/60 text-xs mt-1">Senior Web Design Expert</p>
+                <p className="text-white/80 text-xs">Senior Web Developer</p>
+                <p className="text-white/60 text-xs mt-1"></p>
                 <div className="mt-3">
                   <a 
                     href="tel:03027262793" 
@@ -578,7 +578,7 @@ const WebDevelopment = () => {
               </div>
               <div className="mt-4 text-center">
                 <h4 className="font-bold text-white text-lg">Tanzeela Waheed</h4>
-                <p className="text-white/80 text-sm">Senior Web Design Expert</p>
+                <p className="text-white/80 text-sm">Senior Web Developer</p>
                 <div className="mt-3">
                   <a 
                     href="tel:03004802356" 
