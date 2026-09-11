@@ -85,11 +85,9 @@ const Home = () => {
     <div className="bg-white min-h-screen relative overflow-hidden">
 
       {/* =====================================================
-          HERO SECTION - White Background with Space for Image
+          HERO SECTION - White Background with Image
       ===================================================== */}
       <section className="w-full min-h-screen flex items-center relative overflow-hidden py-20 z-10 bg-white">
-        {/* Removed video background - now white */}
-        
         {/* Decorative Elements */}
         <div className="absolute top-20 right-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-0 w-96 h-96 bg-[#C9A227]/5 rounded-full blur-3xl"></div>
@@ -149,7 +147,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Right Column - Space for Image */}
+            {/* Right Column - Image */}
             <motion.div
               initial={{ opacity: 0, x: 100 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -157,29 +155,14 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="relative flex justify-center items-center h-[500px] md:h-[550px]"
             >
-              {/* Placeholder for Image */}
-              <div className="relative w-full max-w-md h-full flex items-center justify-center">
-                {/* Decorative circles */}
-                <div className="absolute w-80 h-80 border-2 border-[#C9A227]/20 rounded-full"></div>
-                <div className="absolute w-64 h-64 bg-[#C9A227]/10 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute w-96 h-96 border border-[#C9A227]/10 rounded-full"></div>
-                
-                {/* Image will go here */}
-                <div className="relative z-10 w-full h-full flex items-center justify-center">
-                  {/* <Image
-                    src="/images/your-image.png"
-                    alt="Hero Image"
-                    width={500}
-                    height={500}
-                    className="object-contain drop-shadow-2xl"
-                  /> */}
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-[#C9A227]/20 to-[#DAA520]/20 flex items-center justify-center">
-                      <span className="text-6xl">🚀</span>
-                    </div>
-                    <p className="text-sm text-gray-400 mt-4">Your Image Here</p>
-                  </div>
-                </div>
+              <div className="relative z-10 w-full h-full flex items-center justify-center">
+                <Image
+                  src="/images/group.jpg"
+                  alt="CloudFlux Tech Team"
+                  width={500}
+                  height={500}
+                  className="object-contain drop-shadow-2xl rounded-2xl"
+                />
               </div>
             </motion.div>
 
@@ -883,7 +866,7 @@ const Home = () => {
                   className="flex justify-start"
                 >
                   <div className="bg-white shadow-xl rounded-2xl p-6 w-full relative border border-gray-100 hover:shadow-[#C9A227]/20 transition-all duration-500 hover:-translate-y-1">
-                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">“</div>
+                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">"</div>
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
                         JA
@@ -894,7 +877,7 @@ const Home = () => {
                         <p className="text-gray-600 mt-2 text-sm leading-relaxed">CloudFlux Tech completely revolutionized our digital strategy. Their team built us a cutting-edge website that perfectly represents our brand.</p>
                       </div>
                     </div>
-                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">”</div>
+                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">"</div>
                   </div>
                 </motion.div>
 
@@ -907,7 +890,7 @@ const Home = () => {
                   className="flex justify-end"
                 >
                   <div className="bg-white shadow-xl rounded-2xl p-6 w-full md:w-[95%] relative border border-gray-100 hover:shadow-[#C9A227]/20 transition-all duration-500 hover:-translate-y-1">
-                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">“</div>
+                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">"</div>
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
                         DM
@@ -918,7 +901,7 @@ const Home = () => {
                         <p className="text-gray-600 mt-2 text-sm leading-relaxed">CloudFlux Tech has been instrumental in growing our digital footprint. Their team understood our unique needs and delivered excellence.</p>
                       </div>
                     </div>
-                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">”</div>
+                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">"</div>
                   </div>
                 </motion.div>
 
@@ -931,7 +914,7 @@ const Home = () => {
                   className="flex justify-start"
                 >
                   <div className="bg-white shadow-xl rounded-2xl p-6 w-full relative border border-gray-100 hover:shadow-[#C9A227]/20 transition-all duration-500 hover:-translate-y-1">
-                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">“</div>
+                    <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">"</div>
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
                         KL
@@ -942,7 +925,7 @@ const Home = () => {
                         <p className="text-gray-600 mt-2 text-sm leading-relaxed">Incredible experience working with CloudFlux Tech. Their technical skills and marketing strategies exceeded our expectations.</p>
                       </div>
                     </div>
-                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">”</div>
+                    <div className="absolute bottom-3 right-6 text-[#C9A227] text-2xl">"</div>
                   </div>
                 </motion.div>
               </div>
