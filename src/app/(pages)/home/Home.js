@@ -869,7 +869,7 @@ const Home = () => {
                     <div className="absolute -top-4 left-6 bg-[#C9A227] text-white w-10 h-10 flex items-center justify-center rounded-full text-xl shadow-lg shadow-[#C9A227]/30">"</div>
                     <div className="flex items-start gap-4">
                       <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#C9A227] to-[#DAA520] flex items-center justify-center text-white text-lg font-bold flex-shrink-0">
-                        JA
+                        GA
                       </div>
                       <div>
                         <h4 className="font-bold text-lg text-black">John Anderson</h4>
